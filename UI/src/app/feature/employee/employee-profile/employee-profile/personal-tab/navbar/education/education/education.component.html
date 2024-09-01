@@ -1,0 +1,202 @@
+<div class="right__part">
+    <div class="cont cont1_1">
+        <div class="common_form">
+            <div class="common_title">
+                <h2 class="h2 ">
+                    {{ "i18n.employeeProfile.personal-details.education" | translate }}
+                </h2>
+
+            </div>
+
+            <div>
+                <div class="form-box">
+                    <form (ngSubmit)="SaveEducation()">
+                        <div class="form-fields popup-forms">
+                            <div>
+                                <label for="education-level">{{
+                                    "i18n.employeeProfile.personal-details.educationDetails.educationLevel" | translate
+                                    }}</label>
+                                <div class="select-wrapper">
+                                    <!-- [(ngModel)]="education.educationLevels" -->
+                                    <select  (change)="onEducationSelect($event)"
+                                        aria-placeholder="Select Education" name="education-educationlevel">
+                                        <ng-container >
+                                            <option selected>{{
+                                                "i18n.employeeProfile.personal-details.educationDetails.SelectEducationLevel" | translate
+                                                }}</option>
+                                            <option *ngFor="let el of educationlevel" [selected]="el.id == education.educationLevels" [value]="el.id">
+                                                {{"i18n.employeeProfile.personal-details.educationDetails.educationLeveldetails." + el.level | translate}}
+                                                <!-- {{el.level}} -->
+                                            </option>
+                                        </ng-container>
+                                    </select>
+                                    <div class="select-arrow"></div>
+                                </div>
+                            </div>
+                            <div>
+                                <label for="education-subject">{{
+                                    "i18n.employeeProfile.personal-details.educationDetails.subjectofstudy" | translate
+                                    }}</label>
+                                <input type="text" id="education-subject" name="education-subject"
+                                    [(ngModel)]="education.subject" placeholder="Subject of Study">
+                            </div>
+                         
+                            <div>
+                                <label for="education-institute">{{
+                                    "i18n.employeeProfile.personal-details.educationDetails.institute" | translate
+                                    }}</label>
+                                <input type="text" id="education-institute" name="education-institute"
+                                    [(ngModel)]="education.institute" placeholder="Name of Institute">
+                            </div>
+
+                            <div>
+                                <label for="Country">{{ "i18n.employeeProfile.personal-details.educationDetails.country"
+                                    | translate }} </label>
+                            
+                                <!-- <select [(ngModel)]="education.country" name="Country" (change)="onSelect($event)" aria-placeholder="Select Country">
+                                    <ng-container *ngFor="let item of country">
+                                        <option [selected]="item.id === education.country" [value]="item.id">
+                                            {{ item.countryName }}
+                                        </option>
+                                    </ng-container>
+                                </select> -->
+
+
+                                <ng-select class="ng-selects" [(ngModel)]="education.country" name="Country" (ngModelChange)="onSelect($event)"
+                                aria-placeholder="Select Country">
+                                    <ng-option *ngFor="let item of country"  [value]="item.id">
+                                      {{item.countryName}}
+                                    </ng-option>
+                                  </ng-select>
+                            </div>
+                            <div>
+                                <label for="state">{{ "i18n.employeeProfile.personal-details.educationDetails.state" |
+                                    translate }} </label>
+                             
+                                <!-- <select [(ngModel)]="education.state" name="State" (change)="onStateSelect($event)"  aria-placeholder="Select State">
+                                    <ng-container *ngFor="let state of filteredStates">
+                                        <option [selected]="state.id === education.state" [value]="state.id">
+                                            {{ state.name}}
+                                        </option>
+                                    </ng-container>
+                                </select> -->
+
+                                <ng-select class="ng-selects" [(ngModel)]="education.state" name="State" (ngModelChange)="onStateSelect($event)" aria-placeholder="Select State">
+                                    <ng-option *ngFor="let state of filteredStates" [value]="state.id">
+                                      {{state.name}}
+                                    </ng-option>
+                                  </ng-select>
+
+                            </div>
+
+                            <div>
+                                <label for="City">{{ "i18n.employeeProfile.personal-details.educationDetails.city" |
+                                    translate }}</label>
+                            
+                                <!-- <select [(ngModel)]="education.city" name="city"
+                                aria-placeholder="Select City">
+                                <option *ngFor="let city of filteredCity" [value]="city.id">{{ city.name }}</option>
+                            </select> -->
+
+                            <ng-select class="ng-selects" [(ngModel)]="education.city" name="city"  aria-placeholder="Select City
+                            ">
+                                 <ng-option *ngFor="let city of filteredCity"   [value]="city.id">
+                                   {{city.name}}
+                                 </ng-option>
+                               </ng-select>
+                            </div>
+
+                            
+                            <div>
+                                <label for="education-completion-date"> {{
+                                    "i18n.employeeProfile.personal-details.educationDetails.completionDate" | translate
+                                    }}</label>
+                                <input type="date" id="education-completion-date" name="education-completion-date"
+                                    [(ngModel)]="education.completionDate">
+
+                            </div>
+                            <div>
+                                <label for="certificate-upload" class="file-label">{{
+                                    "i18n.employeeProfile.personal-details.educationDetails.certificate" | translate }}
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <div class="file-input-box">
+                                        <input type="file" id="certificate-upload" #certificateUpload
+                                            name="certificate-upload" style="display: none;"
+                                            (change)="onFileSelected($event)">
+                                        <div class="file-name">{{ selectedFileName }}</div>
+                                        <i class="bi bi-cloud-upload"></i>
+                                    </div>
+                                </label>
+                            </div>
+                            <div>
+                                <label for="anabin-upload" class="file-label">{{
+                                    "i18n.employeeProfile.personal-details.educationDetails.anabin" | translate }}
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <div class="file-input-box">
+                                        <input type="file" id="anabin-upload" #anabinUpload name="anabin-upload"
+                                            style="display: none;" (change)="onFileSelected2($event)">
+                                        <div class="file-name">{{ selectedFileName2 }}</div>
+                                        <i class="bi bi-cloud-upload"></i>
+                                    </div>
+                                </label>
+                            </div>
+
+                        </div>
+                        <input type="submit" class="btn btn-primary ml-25 mb-20"
+                            value="{{ 'i18n.Common.Add' | translate }}" *ngIf="!education.id" />
+                        <input type="submit" class="btn btn-primary ml-25 mb-20"
+                            value="{{ 'i18n.Common.Update' | translate }}" *ngIf="education.id" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="right__part">
+    <div class="cont cont1_1">
+        <div class="common_form">
+            <div class="common_title">
+                <h2 class="h2 mb-0">
+                    {{ "i18n.employeeProfile.personal-details.educationDetails.educationlist" | translate }}
+                </h2>
+            </div>
+            <div class="table_space">
+                <div class="table_scroll">
+                    <app-beon-grid *ngIf="columnDefs.length > 0" [showDownloadButton]="showDownload"
+                        [showEditButton]="hasPermission('employeeprofile.education.Edit')"
+                        [showDeleteButton]="hasPermission('employeeprofile.education.Delete')"
+                        [dataRowSource]="dataRowSource" [columnDefs]="columnDefs" 
+                        (onEdit)="onEditClick($event)"
+                        (onDelete)="onDeleteClick($event)" 
+                        (onDownload)="onDownloadClick($event)" [totalPages]="totalPages" [totalItems]="totalItems"
+                        (getDataRowsourse)="getDataRowsourse($event)" (ongridReady)="gridReady($event)" >
+                    </app-beon-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- <div><button (click)="onDownloadCertificateClick($event)">Download Certificate</button></div> -->
+
+<div class="Modal" *ngIf="showDeleteModal">
+    <div class="Modal-content">
+        <div class="Modal-header">
+            <h2 class="fnt-color"><strong>{{ 'i18n.Common.DeleteConfirmation' | translate }}</strong></h2>
+        </div>
+        <div class="Modal-body">
+            <span style="color: black">
+                {{ 'i18n.Common.SureDelete' | translate }}
+                <span> {{ DeleteEducation }} </span>
+            </span>
+        </div>
+        <div class="Modal-footer">
+            <button type="button" class="btn btn-secondary me-2" (click)="cancelDelete()" data-dismiss="modal">
+                {{ 'i18n.Common.Cancel' | translate }}
+            </button>
+            <button type="button" class="btn btn-danger" (click)="deleteItem()">
+                {{ 'i18n.Common.Delete' | translate }}
+            </button>
+        </div>
+    </div>
+</div>

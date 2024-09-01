@@ -1,0 +1,224 @@
+<div class="common_form">
+  <div class="common_title">
+    <h2 class="h2 mb-0">
+      {{ "i18n.configuration.managePermission" | translate }}
+    </h2>
+  </div>
+
+  <div class="row">
+    <div class="col-4 p-4 pb-0 pt-3">
+      <label for="Role">
+        {{
+        "i18n.configuration.managePermissionDetails.selectRole" | translate
+        }}</label>
+       <select class="p-3" [(ngModel)]="selectedRole" (change)="getpermissionById(selectedRole)" name="Role" required>
+        <ng-container>
+          <option [ngValue]="null" disabled [selected]="selectedRole === null">Select Role</option>
+          <option *ngFor="let role of roleGroup" [ngValue]="role.id">
+            {{ role.name }}
+          </option>
+        </ng-container>
+      </select>
+    </div>
+    <div class="col-4 p-5 pb-0" *ngIf="hasPermission('configuration.permission.Add')">
+      <input type="button" class="btn btn-primary h-100" (click)="savePermission()" value=" {{
+          'i18n.configuration.managePermissionDetails.applyPermission'
+            | translate
+        }}" />
+    </div>
+  </div>
+  <div class="table_space mt-4">
+    <div class="table_scroll mh-50 overflow-auto">
+      <table class="table table-responsive border-1">
+        <thead>
+          <tr>
+            <th>{{
+              'i18n.configuration.managePermissionDetails.model'
+              | translate
+              }}</th>
+            <th>{{
+              'i18n.configuration.managePermissionDetails.submodel'
+              | translate
+              }}</th>
+            <th colspan="1" class="px-4">{{
+              'i18n.Common.Action'
+              | translate
+              }}</th>
+            <th></th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- <tr>
+            <td data-column="Model">
+              <div class="check_box_group permission_grp">
+                <div class="form-group">
+                  <input type="checkbox" id="Annual Leave">
+                  <label for="Annual Leave">Annual Leave</label>
+                </div>
+              </div>
+            </td>
+            <td data-column="Sub Model">
+              <div class="check_box_group permission_grp">
+                <div class="form-group">
+                  <input type="checkbox" id="Leave">
+                  <label for="Leave">Leave</label>
+                </div>
+              </div>
+            </td>
+            <td data-column="Page / Tab Action">
+              <div class="check_box_group permission_grp">
+                <div class="form-group">
+                  <input type="checkbox" id="Apply Leave">
+                  <label for="Apply Leave">Apply Leave</label>
+                </div>
+              </div>
+            </td>
+            <td data-column="Action" class="action">
+              <div class="check_box_group permission_grp">
+                <div class="form-group">
+                  <input type="checkbox" id="Add">
+                  <label for="Add" class="m-lg-1">Add</label>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" id="Edit">
+                  <label for="Edit" class="m-lg-1">Edit</label>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" id="Delete">
+                  <label for="Delete" class="m-lg-1">Delete</label>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" id="view">
+                  <label for="view" class="m-lg-1">View</label>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" id="Appoved">
+                  <label for="Appoved" class="m-lg-1">Appoved</label>
+                </div>
+              </div>
+            </td>
+          </tr> -->
+          <tr>
+            <td data-column="Sub Model" class="w-25">
+              <div class="check_box_group permission_grp">
+                <div class="form-group">
+                  <span></span>
+                </div>
+              </div>
+            </td>
+            <td data-column="Sub Model" class="w-25">
+              <div class="check_box_group permission_grp">
+                <div class="form-group">
+                  <span></span>
+                </div>
+              </div>
+            </td>
+            <td data-column="Sub Model" class="w-25">
+              <div class="check_box_group permission_grp">
+                <div class="form-group">
+                  <input type="checkbox" [id]="'fullPermission'" (change)="selectAllCheckboxCommon($event)"
+                    [checked]="isSelectAllCommon()" [disabled]="!hasPermission('configuration.permission.Add')" />
+                  <label [for]="'fullPermission'" class="m-lg-1">{{
+                    'i18n.configuration.managePermissionDetails.full'
+                    | translate
+                    }}</label>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" [id]="'nonePermission'" (change)="
+                      nonePermissionCheckboxCommon($event)
+                    " [checked]="isSelectNoneCommon()" [disabled]="!hasPermission('configuration.permission.Add')" />
+                  <label [for]="'nonePermission'" class="m-lg-1">{{
+                    'i18n.configuration.managePermissionDetails.none'
+                    | translate
+                    }}</label>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" [id]="'onlyViewPermission'" (change)="
+                      onlyViewCheckboxCommon($event) 
+                    " [checked]="isSelectViewOnlyCommon()"
+                    [disabled]="!hasPermission('configuration.permission.Add')" />
+                  <label [for]="'onlyViewPermission'" class="m-lg-1">{{
+                    'i18n.configuration.managePermissionDetails.onlyview'
+                    | translate
+                    }}</label>
+                </div>
+              </div>
+            </td>
+          </tr>
+
+          <ng-container>
+            <tr *ngFor="let permission of permissions; let i = index">
+              <td data-column="Model" class="w-25">
+                <div class="check_box_group permission_grp">
+                  <div class="form-group">
+                    <div class="form-group">
+                      <span>{{ permission.model }}</span>
+                    </div>
+                  </div>
+                </div>
+              </td>
+              <td data-column="Sub Model" class="w-25">
+                <div class="check_box_group permission_grp">
+                  <div class="form-group">
+                    <span>{{ permission.subModel }}</span>
+                  </div>
+                </div>
+              </td>
+              <td data-column="Action" class="action">
+                <div class="check_box_group permission_grp">
+                  <div class="form-group" *ngFor="let action of permission.action">
+                    <input type="checkbox" [id]="permission.subModel + action.Label"
+                      (change)="Onchange(action.permission)" [value]="action.permission" [checked]="
+                        this.permissionGroup.includes(action.permission)
+                      " [disabled]="!hasPermission('configuration.permission.Add')" />
+                    <label [for]="permission.subModel + action.Label" class="m-lg-1">{{ action.Label }}</label>
+                  </div>
+
+                  <!-- <div class="form-group">
+                  <input type="checkbox" id="Edit">
+                  <label for="Edit" class="m-lg-1">Edit</label>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" id="Delete">
+                  <label for="Delete" class="m-lg-1">Delete</label>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" id="view">
+                  <label for="view" class="m-lg-1">View</label>
+                </div>
+                <div class="form-group">
+                  <input type="checkbox" id="Appoved">
+                  <label for="Appoved" class="m-lg-1">Appoved</label>
+                </div> -->
+                </div>
+              </td>
+              <td data-column="Action" class="action">
+                <div class="check_box_group permission_grp">
+                  <div class="form-group">
+                    <input type="checkbox" [id]="'fullPermission' + i"
+                      (change)="selectAllCheckbox($event, permission.action)" [checked]="isSelectAll(permission.action)"
+                      [disabled]="!hasPermission('configuration.permission.Add')" />
+                    <label [for]="'fullPermission' + i" class="m-lg-1">{{
+                      'i18n.configuration.managePermissionDetails.full'
+                      | translate
+                      }}</label>
+                  </div>
+                  <div class="form-group">
+                    <input type="checkbox" [id]="'nonePermission' + i" (change)="
+                        nonePermissionCheckbox($event, permission.action)
+                      " [checked]="isSelectNone(permission.action)"
+                      [disabled]="!hasPermission('configuration.permission.Add')" />
+                    <label [for]="'nonePermission' + i" class="m-lg-1">{{
+                      'i18n.configuration.managePermissionDetails.none'
+                      | translate
+                      }}</label>
+                  </div>
+                </div>
+              </td>
+            </tr>
+          </ng-container>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

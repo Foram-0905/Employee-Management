@@ -1,0 +1,54 @@
+@import '../../../styles/abstracts/variable';
+.ag-theme-material {
+    --ag-header-foreground-color: $Steel_Blue;
+    --ag-font-size: 0.875rem;
+    --ag-icon-font-color-first:$Gray;
+    --ag-icon-font-color-previous:$Gray;
+    --ag-icon-font-color-next:$Gray;
+    --ag-icon-font-color-last:$Gray;
+    --ag-icon-font-color-small-down:$Gray;
+    --ag-borders:1px solid;
+    --ag-checkbox-checked-color: #0d6efd;
+    --ag-width:100vh;
+
+  }
+
+  // .ag-center-cols-container{
+  //   width: 100% !important;
+  // }
+
+  .ag-grid-size{
+    width: 100%;
+    height: 490px;
+
+  }
+  .ag-div-size{
+    height: 560px;
+    width: 100%;
+  }
+
+
+  .paginationSelect{
+    padding-right: 2.875em !important;
+    height: 35px;
+  }
+  // .pagination {
+  //   display: flex;
+  //   align-items: center;
+  // }
+
+
+  .bold {
+    font-weight: bold;
+    margin:08px;
+  }
+  // .edit-button{
+  //  background: $White;
+  //  border: none;
+
+  //  img{
+  //   height: 30px;
+  //   width: 30px;
+  //  }
+  //  &:hover{cursor: pointer;}
+  // }

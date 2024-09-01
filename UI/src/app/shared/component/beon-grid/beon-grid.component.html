@@ -1,0 +1,84 @@
+<div class="ag-theme-{{ agGridTheme }} ag-div-size" >
+  <ag-grid-angular 
+    #agGrid
+    class="ag-theme-material ag-grid-size"
+    [rowData]="dataRowSource"
+    [columnDefs]="columnDefs"
+    [defaultColDef]="defaultColDef"
+    [pagination]="false"
+    [autoSizeStrategy]="autoSizeStrategy"
+    (sortChanged)="onSortChanged($event)"
+    [components]="frameworkComponents"
+    (gridReady)="onGridReady($event)"
+    (filterChanged)="onFilterChanged()"
+    [overlayNoRowsTemplate]="noRowsTemplate"
+    rowSelection="multiple"
+    (selectionChanged)="onSelectionChanged($event)"
+  >
+  </ag-grid-angular>
+
+  <div class="row">
+    <div class="col-9 mt-3 px-3">
+      <nav aria-label="...">
+        <ul class="pagination">
+          <li class="page-item">
+            <a class="page-link" (click)="firstPage()" tabindex="-1">
+              <i class="bi bi-chevron-bar-left"></i>
+            </a>
+          </li>
+      
+          <li class="page-item">
+            <a class="page-link" (click)="prev()" tabindex="-1">
+              <i class="bi bi-chevron-left"></i>
+            </a>
+          </li>
+      
+          <ng-container *ngFor="let item of displayedPageNumbers">
+            <li class="page-item" [ngClass]="{'active': pagenumber === item}">
+              <a class="page-link" (click)="navigateToPageNumbers(item)">
+                {{ item }}
+              </a>
+            </li>
+          </ng-container>
+      
+          <li class="page-item">
+            <a class="page-link" (click)="next()">
+              <i class="bi bi-chevron-right"></i>
+            </a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" (click)="lastPage()">
+              <i class="bi bi-chevron-bar-right"></i>
+            </a>
+          </li>
+        </ul>
+      </nav>
+      
+    </div>
+    <div class="col-3 mt-3 px-3 d-flex justify-content-end">
+      <nav aria-label="totalpage...">
+        <ul class="pagination mx-3">
+          <li class="page-item">
+            <a class="page-link"
+              >Total records: <strong>{{ totalItems }}</strong></a
+            >
+          </li>
+        </ul>
+      </nav>
+
+      <select
+        name="sizeSelect "
+        class="paginationSelect w-25"
+        [(ngModel)]="pageSizes"
+        (change)="onPageSize($event)"
+      >
+        <option value="2">2</option>
+        <option value="5">5</option>
+        <option value="10">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+      </select>
+    </div>
+  </div>
+</div>

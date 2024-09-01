@@ -1,0 +1,23 @@
+    <div class="common_form">
+  <div class="common_title">
+      <h2 class="h2">{{ "i18n.leave.employeeLeaveBalance.typesOfLeave" | translate }}</h2>
+  </div>
+  <div class="form_fields">
+      <ul class="row">
+        <li class="col-2 w-25" *ngFor="let item of displayLeaveType">
+            <div class="leave_block" [class]="item.leaveType">
+              <h6 class="fs-5">{{ item.leaveType }}</h6>
+              <p class="fs-6" *ngIf="activeTab == 'employeeLeaveBalance'">
+                Available: 
+                <span *ngIf="item.leaveQuota === -1">Unlimited</span>
+                <span *ngIf="item.leaveQuota !== -1">{{ item.leaveQuota }}</span>
+              </p>
+              <p class="fs-6" *ngIf="activeTab == 'employeeLeaveBalance'">Taken: {{ item.takenLeave }}</p>
+            </div>
+          </li>          
+      </ul>
+  </div>
+</div>
+<!-- <ng-container  *ngFor="let item of AvailableLeaveData" >
+    <p class="fs-6" *ngIf="activeTab=='employeeLeaveBalance'">Available :{{item.leaveQuota}}</p>
+  </ng-container> -->

@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="Microsoft.IdentityModel.Tokens" Version="7.4.0" />
+		<PackageReference Include="NETCore.MailKit" Version="2.1.0" />
+		<PackageReference Include="OneOf" Version="3.0.263" />
+		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.4.0" />
+	</ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\beONHR.DAL\beONHR.DAL.csproj" />
+    <ProjectReference Include="..\beONHR.Entities\beONHR.Entities.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Email\" />
+    <Folder Include="Role\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,202 @@
+<div class="common_form">
+  <div class="common_title">
+    <h2 class="h2 mb-0">
+      {{ "i18n.configuration.manageLeave" | translate }}
+    </h2>
+    <button #addBtn id="openModalButton" (click)="addLeave()" class="btn btn-primary" data-bs-toggle="modal"
+      data-bs-target="#AddEditModalToggle" role="button" *ngIf="hasPermission('configuration.leave.Add')">
+      {{ "i18n.Common.Add" | translate }}
+    </button>
+  </div>
+
+  <div class="search_count">
+    <div class="search_right">
+      <form (ngSubmit)="commonSearchWithinGrid()" class="reset">
+        <input type="search" placeholder="search" name="commonSearchText" [(ngModel)]="searchText" />
+        <input type="submit" value="Search" />
+      </form>
+    </div>
+  </div>
+
+  <div class="table_space">
+    <div class="table_scroll">
+      <app-beon-grid *ngIf="columnDefs.length > 0" [showEditButton]="hasPermission('configuration.manageleave.Edit')"
+        [showDeleteButton]="hasPermission('configuration.manageleave.Delete')" [dataRowSource]="dataRowSource"
+        [columnDefs]="columnDefs" (onEdit)="onEditClick($event)" (onDelete)="onDeleteClick($event)"
+        [totalPages]="totalPages" [totalItems]="totalItems" (getDataRowsourse)="getDataRowsourse($event)"
+        (ongridReady)="gridReady($event)"></app-beon-grid>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" aria-labelledby="AddEditModalToggleLabel" #addEditModal id="AddEditModalToggle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered custom-modal-width">
+    <div class="form-box modal-content">
+      <div class="popup">
+        <div class="popup-title">
+          <h3 *ngIf="manageLeave.id">
+            {{ "i18n.configuration.manageLeaveDetails.editLeave" | translate }}
+          </h3>
+          <h3 *ngIf="!manageLeave.id">
+            {{ "i18n.configuration.manageLeaveDetails.addLeave" | translate }}
+          </h3>
+        </div>
+        <div>
+          <button type="button" #closeButton (click)="closeModal()" class="btn-close btn-close-white"
+            data-bs-dismiss="modal"></button>
+        </div>
+        <!-- (click)="onRemoveClick()" aria-label="Close" -->
+      </div>
+      <form (ngSubmit)="applyLeave()">
+        <div class="form-fields three-column popup-forms">
+          <div>
+            <label for="Initial-SLG-Status">{{
+              "i18n.configuration.manageLeaveDetails.employeeName" | translate
+              }}</label>
+            <select id="employeeName" [(ngModel)]="manageLeave.employeeId" name="employeeName"
+              aria-placeholder="select Employee Name">
+              <ng-container >
+                <option [ngValue]="null" [selected]="manageLeave.employeeId === null">Select Employee Name</option>
+                <option *ngFor="let item of employees"  [ngValue]="item.id">
+                  {{
+                  item.fullName
+                  }}
+                </option>
+              </ng-container>
+            </select>
+          </div>
+
+          <div>
+            <label for="leaveType">{{ "i18n.configuration.manageLeaveDetails.leaveType" | translate }}</label>
+            <select id="leaveType" [(ngModel)]="manageLeave.leavetype" name="leaveType">
+              <option [ngValue]="null" [selected]="manageLeave.leavetype === null">Select Leave Type</option>
+              <option *ngFor="let item of allLeaveType" [ngValue]="item.id">
+                {{ item.typeName }}
+              </option>
+            </select>
+          </div>
+          
+          
+        </div>
+        <div class="form-fields three-column popup-forms">
+          <div>
+            <label for="startDate">{{
+              "i18n.configuration.manageLeaveDetails.startDate" | translate
+              }}</label>
+            <input type="date" id="start_date" name="start_date" [(ngModel)]="manageLeave.startDate" placeholder="{{
+                'i18n.configuration.managePublicHolidayDetails.startDate' | translate
+                }}" (ngModelChange)="updateTotalDays()" [min]="currentDate" [max]="manageLeave.endDate" required />
+          </div>
+          <div>
+            <label for="endDate">{{
+              "i18n.configuration.manageLeaveDetails.endDate" | translate
+              }}</label>
+            <input type="date" id="end_date" name="end_date" [(ngModel)]="manageLeave.endDate" placeholder="{{
+                'i18n.configuration.managePublicHolidayDetails.endDate'
+                  | translate
+              }}" [disabled]="!manageLeave.startDate" (ngModelChange)="updateTotalDays()" [min]="manageLeave.startDate"
+              required />
+          </div>
+
+        </div>
+        <div class="form-fields three-column popup-forms">
+          <ng-container *ngIf="totalDay == '1' && manageLeave.leaveDay">
+            <div>
+              <label for="end_leave_Duration">{{ "i18n.configuration.manageLeaveDetails.leave_Duration" | translate }}</label>
+              <select id="leave_Duration" [(ngModel)]="manageLeave.leave_duration" name="leaveType"
+                aria-placeholder="select Leave duration" (change)="updateTotalDays()">
+                <option value="Full" [selected]="manageLeave.leave_duration == 'Full'">
+                  {{ "i18n.configuration.manageLeaveDetails.full" | translate }}
+                </option>
+                <option value="Half" [selected]="manageLeave.leave_duration == 'Half'">
+                  {{ "i18n.configuration.manageLeaveDetails.half" | translate }}
+                </option>
+                <option value="Second_Half" [selected]="manageLeave.leave_duration == 'Second_Half'">
+                  {{ "i18n.configuration.manageLeaveDetails.secondhalf" | translate }}
+                </option>
+              </select>
+            </div>
+          </ng-container>
+          <ng-container *ngIf="totalDay != '1' && totalDay">
+            <div>
+              <label for="leave_Start_From">{{
+                "i18n.configuration.manageLeaveDetails.leave_Start_From"
+                | translate
+                }}</label>
+              <select id="leave_Start_From" [(ngModel)]="manageLeave.leave_Start_From" name="leave_Start_From"
+                aria-placeholder="select Leave duration" (change)="updateTotalDays()">
+                <option value="Full" [selected]="manageLeave.leave_Start_From == 'Full'" selected>
+                  {{ "i18n.configuration.manageLeaveDetails.full" | translate }}
+                </option>
+                <option value="Second_Half" [selected]="manageLeave.leave_Start_From == 'Second_Half'">
+                  {{ "i18n.configuration.manageLeaveDetails.secondhalf" | translate }}
+                </option>
+              </select>
+            </div>
+            <div>
+              <label for="leave_End">{{
+                "i18n.configuration.manageLeaveDetails.leave_End" | translate
+                }}</label>
+              <select id="leave_End" [(ngModel)]="manageLeave.leave_End" name="leave_End"
+                placeholder="select Leave duration" (change)="updateTotalDays()">
+                <option value="Full" [selected]="manageLeave.leave_End == 'Full'" selected>
+                  {{ "i18n.configuration.manageLeaveDetails.full" | translate }}
+                </option>
+                <option value="First Half" [selected]="manageLeave.leave_End == 'First_Half'">
+                  {{ "i18n.configuration.manageLeaveDetails.firsthalf" | translate }}
+                </option>
+              </select>
+            </div>
+          </ng-container>
+          <div>
+            <label for="requestedDay">{{
+              "i18n.configuration.manageLeaveDetails.requestedDay" | translate
+              }}</label>
+            <input type="text" id="DaysofRequestedLeave" name="DaysofRequestedLeave" placeholder="{{
+                'i18n.configuration.manageLeaveDetails.requestedDay' | translate
+              }}" [(ngModel)]="manageLeave.leaveDay" disabled />
+          </div>
+        </div>
+        <div class="form-fields popup-forms">
+          <div>
+            <label for="requestedDay">{{
+              "i18n.configuration.manageLeaveDetails.reason" | translate
+              }}</label>
+            <textarea id="reason" name="reason" placeholder="{{
+                'i18n.configuration.manageLeaveDetails.reason' | translate
+              }}" [(ngModel)]="manageLeave.reason" rows="5"></textarea>
+          </div>
+
+        </div>
+        <input type="submit" class="btn btn-primary ml-25 mb-20" value="{{ 'i18n.Common.Update' | translate }}"
+          *ngIf="manageLeave.id" />
+        <input type="submit" class="btn btn-primary ml-25 mb-20" value="{{ 'i18n.Common.Add' | translate }}"
+          *ngIf="!manageLeave.id" />
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Delete Modal -->
+<div class="Modal" *ngIf="showDeleteModal">
+  <div class="Modal-content">
+    <div class="Modal-header">
+      <h2 class="fnt-color"><strong>Delete Confirmation </strong></h2>
+    </div>
+    <div class="Modal-body">
+      <span style="color: black">
+        Are you sure you want to delete
+        <span class="fw-bolder">{{ deleteLeave }}</span>?
+      </span>
+    </div>
+    <div class="Modal-footer">
+      <button type="button" class="btn btn-secondary me-2" (click)="cancelDelete()" data-dismiss="modal">
+        Cancel
+      </button>
+      <button type="button" class="btn btn-danger" (click)="deleteItem()">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

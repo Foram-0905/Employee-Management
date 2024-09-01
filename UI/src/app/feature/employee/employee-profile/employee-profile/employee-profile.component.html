@@ -1,0 +1,22 @@
+<div class="tabbing_part">
+  <div class="Nav-Prsl-Finacl">
+    <ul class="nav">
+      <li (click)="navItemClick(0); personal()" [class.on]="isActive(0)" [class.defaultOn]="isDefaultOn(0)">
+        {{ 'i18n.employeeProfile.personal-details.personal' | translate }}
+      </li>
+      <li *ngIf="!flag" (click)="navItemClick(1); financial()" [class.on]="isActive(1)" [class.defaultOn]="isDefaultOn(1)">
+        {{ 'i18n.employeeProfile.finance' | translate }}
+      </li>
+    </ul>
+  </div>
+  <div class="Employeelist" *ngIf="!flag" >
+    <form [formGroup]="frm">
+      <ng-select class="w-20 ng-selects" formControlName="SelectedEmploye" [items]="GetEmployeeData" bindLabel="fullName" bindValue="id" placeholder="Employee">
+        <ng-option *ngFor="let employe of GetEmployeeData" [value]="employe.id">
+          {{ employe.fullName }}
+        </ng-option>
+      </ng-select>
+    </form>
+  </div>
+</div>
+<router-outlet></router-outlet>

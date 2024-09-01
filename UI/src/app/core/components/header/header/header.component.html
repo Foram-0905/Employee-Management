@@ -1,0 +1,96 @@
+<div class="right_top_pannel">
+  <div class="group_icon d-flex align-items-center justify-content-end p-3">
+    <div class="icon bg-white rounded-circle d-flex align-items-center justify-content-center"><i
+        class="bi bi-search"></i></div>
+
+<!--Notification-->
+
+ <!-- app.component.html -->
+ <div class="icon-container" (click)="togglePopup($event)">
+  <div class="icon bg-white rounded-circle d-flex align-items-center justify-content-center">
+    <i class="bi bi-bell"></i>
+    <span class="badge" *ngIf="notificationCount > 0">{{ notificationCount }}</span>
+  </div>
+</div>
+
+<!-- Notification Popup -->
+<div class="notification-popup" *ngIf="isPopupVisible" #notificationPopup>
+  <div class="arrow-up"></div>
+  <div class="popup-header">
+    <span>{{ 'i18n.header.notification' | translate }}</span>
+    <span class="close-btn" (click)="togglePopup($event)">  <i class="bi bi-x-circle-fill"></i></span>
+  </div>
+  <div class="popup-body">
+    <div class="notification" *ngFor="let notification of NotificationgetData; let i = index">
+      <div class="notification-text h2 mb-0">
+        {{ notification.notificationText }}
+      </div>
+      <button class="close-notification-btn" (click)="closeNotification(notification.notificationID)">&times;</button>
+    </div>
+  </div>
+</div>
+
+<!-- Notification End -->
+
+    <!-- Dropdown Button -->
+    <div class="dropdown" [class.show]="dropdownOpen">
+      <button class="btn icon bg-white rounded-circle" (click)="toggleDropdown($event)">
+        <i class="bi bi-person"></i>
+      </button>
+      <div class="dropdown-menu" [class.show]="dropdownOpen" #dropdownMenu>
+        <button class="dropdown-item" (click)="openModal()">{{'i18n.header.myaccount' | translate}}</button>
+        <button class="dropdown-item">V 1.0.0</button>
+        <a class="dropdown-item" (click)="logout()">{{'i18n.header.logout' | translate}} <span class="bi bi-box-arrow-right"></span></a>
+      </div>
+    </div>
+    <!-- Modal -->
+    <div *ngIf="isModalOpen" class="modal-backdrop">
+      <div class="modal fade show" tabindex="-1" aria-labelledby="OpenToggleLabel" aria-hidden="true" style="display: block;">
+        <div class="modal-dialog modal-dialog-centered custom-modal-width" #modalForm>
+          <div class="form-box modal-content">
+            <div class="popup">
+              <div class="popup-title">
+                <h3>{{ 'i18n.header.myaccount' | translate }}</h3>
+              </div>
+              <div>
+                <button type="button" class="btn-close btn-close-white" (click)="closeModal()"></button>
+              </div>
+            </div>
+            <form (ngSubmit)="SaveHeader()">
+              <div class="form-fields three-column popup-forms">
+                  <div>
+                      <ul class="navbar-nav ml-auto mb-2 mb-lg-0">
+                          <li class="nav-item">
+                              <label for="Select Language">{{ 'i18n.header.selectlanguage' | translate }}</label>
+                              <select (change)="onLanguageSelect($event)" name="" id="">
+                                  <option [selected]="lang === 'en'" value="en" href="#">English</option>
+                                  <option [selected]="lang === 'gr'" value="gr" href="#">German</option>
+                              </select>
+                          </li>
+                      </ul>
+                  </div>
+                  <div>
+                      <label for="PhoneNumber">{{ 'i18n.header.phonenumber' | translate }}</label>
+                      <input type="text" id="PhoneNumber" name="Phone" placeholder="Phone Number" [(ngModel)]="contactAdressDetails.contactPhone1" required />
+                  </div>
+                  <div>
+                      <label for="emailid">{{ 'i18n.header.emailid' | translate }}</label>
+                      <input type="text" id="emailid" name="EmailbeON" placeholder="Email Id" [(ngModel)]="contactAdressDetails.contactEmailbeON" />
+                  </div>
+                  <div class="row">
+                      <div>
+                          <div>
+                              <button (click)="SendMail()" class="btn btn-secondary" [disabled]="isSendMailPopUp">{{ 'i18n.header.changepassword' | translate }}</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+              <input type="submit" class="btn btn-primary ml-25 mb-20" value="Save" />
+          </form>
+          
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

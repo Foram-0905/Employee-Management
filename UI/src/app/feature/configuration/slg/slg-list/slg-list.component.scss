@@ -1,0 +1,12 @@
+@import '../../../../styles/abstracts/variable';
+
+.slg_main{
+    .slg_add{
+        // border: 1px solid;
+        box-shadow: 0px 2px 4px #7777772e;
+        height: fit-content;
+        width: 70%;
+        margin-top: 20px;
+        background-color: $White;
+    }
+}

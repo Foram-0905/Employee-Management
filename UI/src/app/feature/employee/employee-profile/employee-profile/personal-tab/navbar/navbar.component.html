@@ -1,0 +1,28 @@
+<div>
+  <div class="tabbing_part">
+    <ul class="snav s1">
+      <li (click)="toggleActive('personal')" [ngClass]="{ 'oon': activeTab === 'personal' }">
+        {{ 'i18n.employeeProfile.personal-details.personal' | translate }}
+      </li>
+      <li *ngIf="!flag" (click)="toggleActive('contact')" [ngClass]="{ 'oon': activeTab === 'contact' }">
+        {{ 'i18n.employeeProfile.personal-details.contact' | translate }}
+      </li>
+      <li *ngIf="!flag" (click)="toggleActive('identity_card')" [ngClass]="{ 'oon': activeTab === 'identity_card' }">
+        {{ 'i18n.employeeProfile.personal-details.identity-Cards' | translate }}
+      </li>
+      <li *ngIf="!flag" (click)="toggleActive('assets')" [ngClass]="{ 'oon': activeTab === 'assets' }">
+        {{ 'i18n.employeeProfile.personal-details.assets' | translate }}
+      </li>
+      <li *ngIf="!flag" (click)="toggleActive('education')" [ngClass]="{ 'oon': activeTab === 'education' }">
+        {{ 'i18n.employeeProfile.personal-details.education' | translate }}
+      </li>
+      <li *ngIf="!flag" (click)="toggleActive('job')" [ngClass]="{ 'oon': activeTab === 'job' }">
+        {{ 'i18n.employeeProfile.personal-details.jobHistory' | translate }}
+      </li>
+      <li *ngIf="!flag" (click)="toggleActive('documents')" [ngClass]="{ 'oon': activeTab === 'documents' }">
+        {{ 'i18n.employeeProfile.personal-details.documents' | translate }}
+      </li>
+    </ul>
+  </div>
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,74 @@
+/* org-chart.component.scss */
+.group-container {
+    margin-bottom: 20px;
+  }
+  
+  .employees-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .employee-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    background: #fff;
+    width: 170px;
+    height: 170px;
+    text-align: center;
+  }
+  
+  .employee-image {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 10px;
+  }
+  
+  .employee-details {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .employee-name {
+    font-weight: bold;
+    margin-top: auto;
+    font-size: 12px;
+  }
+  
+  .employee-designation {
+    font-size: 12px;
+    font-weight: bold; /* Bold text */
+    color: #200d0d;
+  }
+  .legend {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+  
+    .legend-item {
+      display: flex;
+      align-items: center;
+      margin: 0 10px;
+  
+      .legend-color {
+        display: inline-block;
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+  
+        &.corporate-color {
+          background-color: #FDC031; // Yellow for Corporate
+        }
+  
+        &.consultant-color {
+          background-color: #0C7CBF; // Blue for Consultant
+        }
+      }
+    }
+  }

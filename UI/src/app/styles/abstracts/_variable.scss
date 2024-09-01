@@ -1,0 +1,62 @@
+// // _variables.scss
+
+// // Colors
+// $primary-color: #0C7CBF;
+// $secondary-color: #FFC031;
+// $tertiary-color: #B4C5E7;
+// $accent-color: #D70C21;
+
+// $text-color: #172B4D;
+// $background-color: #F7FAFC;
+// $border-color: #D9D9D9;
+// $shadow-color: #00000029;
+// $placeholder-color: rgba(23, 43, 55, 0.8);
+// $link-color: #0079bf;
+// $error-color: #FF0000;
+
+// // Additional Colors
+// $success-color: #3A8520;
+// $warning-color: #FFA500;
+// $info-color: #6B33E0;
+// $danger-color: #DC3545;
+// $dark-color: #343A40;
+// $light-color: #F8F9FA;
+
+// // Font Sizes
+// $font-size-small: 12px;
+// $font-size-medium: 14px;
+// $font-size-large: 16px;
+// $font-size-xl: 18px;
+// $font-size-xxl: 20px;
+
+// // Spacing
+// $spacing-xs: 5px;
+// $spacing-sm: 10px;
+// $spacing-md: 20px;
+// $spacing-lg: 30px;
+// $spacing-xl: 40px;
+// $spacing-xxl: 50px;
+
+// // Breakpoints
+// $breakpoint-xs: 0px;
+// $breakpoint-sm: 576px;
+// $breakpoint-md: 768px;
+// $breakpoint-lg: 992px;
+// $breakpoint-xl: 1200px;
+// $breakpoint-xxl: 1400px;
+$Black: #000;
+$Steel_Blue: #4777ac;
+$White: #fff;
+$Gray: #98989c;
+$Emerald: #0eb769;
+$Dark_Blue: #172B4D;
+$Charcoal: #1E1E1C;
+$Dodger_Blue: #0C7CBF;
+$Slate_Gray: #52575D;
+$Red: #D70C21;
+$Yellow: #FDC031;
+$Pastel_Blue: #B4C5E7;
+$Carrot: #e67e22;
+$button-hover-color: darken($Dodger_Blue, 10%);
+$label-color: rgba(23, 43, 77, 0.5);
+$input-bg-color:#f7fafc;

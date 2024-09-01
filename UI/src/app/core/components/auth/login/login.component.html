@@ -1,0 +1,88 @@
+
+<div class="main-container">
+    <div class="main">
+
+            <div class="login_box" *ngIf="resetPasswordScreen!='Resetpassword'">
+                <div class="top_part">
+                    <img class="login_logo mb-lg-3 w-auto" alt="logo">
+                    <!-- src="../../../../../assets/image/logo.svg" -->
+                    <p class="mb-lg-3">Welcome back! Please login to continue.</p>
+                </div>
+                <div class="loginForm">
+                    <form [formGroup]="loginForm" (ngSubmit)="authenticate()">
+                        <div class="row">
+                            <div class="formfields w-100">
+                                <div class="w-100">
+                                    <input type="email" id="loginEmail" formControlName="UserName"
+                                        autocomplete="username" matInput placeholder="Email">
+                                    <img src="../../../../../assets/image/mail.svg" alt="mail-icon">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="formfields w-100">
+                                <div class="w-100">
+                                    <input type="password" id="loginPassword" formControlName="Password"
+                                        autocomplete="Password" matInput placeholder="Password">
+                                    <img src="../../../../../assets/image/lock.svg" alt="mail-icon">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="forgot_pwd">
+                               <a (click)="showScreen('Resetpassword')" class="btn text-primary f-left text-decoration-none tracking-tigh">Forgot Password?</a>
+                            </div>
+                        </div>
+                        <div class="row text-center">
+                            <div class="formfields w-100">
+                                <div class="btn">
+                                    <input type="submit" value="Sign in">
+                                </div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+        <div class="login_box" *ngIf="resetPasswordScreen=='Resetpassword'">
+            <div class="top_part">
+                <img class="login_logo mb-lg-4 w-auto"  alt="logo">
+                <!-- src="../../../../../assets/image/logo.svg" -->
+                <p class="mb-lg-3" *ngIf="!mailSucess">ForgotPassword</p>
+            </div>
+            <div class="loginForm">
+                    <div class="row">
+                        <div class="formfields w-100" *ngIf="!mailSucess">
+                            <div class="w-100">
+                                <input [(ngModel)]="Email" type="email" id="loginEmail" autocomplete="username" matInput
+                                        placeholder="Email">
+                                <img src="../../../../../assets/image/mail.svg" alt="mail-icon">
+                            </div>
+
+                              <p class="fw-bolder mt-2">(Application will send reset password link on your email address)</p>
+
+
+                        </div>
+                        <div *ngIf="mailSucess" class="w-100">
+                                 <p class="text-center m-1">(Application sent reset password link on your email address. Check your Email) </p>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-12 mx-auto">
+                          <div class="d-flex justify-content-evenly">
+                            <button (click)="SendMail()" class="btn btn-primary" *ngIf="!mailSucess" [disabled]="isSendMailPopUp">Send Reset Link</button>
+                            <button (click)="showScreen('Login')" class="btn text-primary f-left text-decoration-none tracking-tight" >Go to Login</button>
+                          </div>
+                        </div>
+                      </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>
+

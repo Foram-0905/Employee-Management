@@ -1,0 +1,15 @@
+<div>
+    <div class="tabbing_part">
+        <ul class="snav s1">
+            <li *ngIf="shouldDisplayTab('salary')" (click)="toggleActive('salary')"
+                [ngClass]="{ 'oon': activeTab === 'salary' }">Salary</li>
+            <li *ngIf="shouldDisplayTab('bonus')" (click)="toggleActive('bonus')"
+                [ngClass]="{ 'oon': activeTab === 'bonus' }">Bonus</li>
+            <li *ngIf="shouldDisplayTab('consultant-rate')" (click)="toggleActive('consultant-rate')"
+                [ngClass]="{ 'oon': activeTab === 'consultant-rate' }">Consultant Rate</li>
+        </ul>
+    </div>
+    <div>
+        <ng-container #container></ng-container>
+    </div>
+</div>

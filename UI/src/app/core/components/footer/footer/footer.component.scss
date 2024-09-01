@@ -1,0 +1,27 @@
+.user__profile_bottom {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    display: flex;
+    align-items: center;
+
+    .user_img {
+        margin-right: 10px;
+
+        img {
+            border-radius: 50%;
+            width: 50px; // Adjust size as needed
+            height: 50px; // Adjust size as needed
+        }
+    }
+
+    .user_info {
+        flex-grow: 1;
+
+        .user_name {
+            margin: 0;
+        }
+    }
+}

@@ -1,0 +1,18 @@
+.form-fields {
+    // margin-top: 20px;
+    // display: grid;
+    grid-template-columns: repeat(4, 1fr);
+}
+
+.ag-header{
+  height: 75px !important;
+}
+.ag-header-cell{
+  cursor: pointer;
+  text-wrap: wrap;
+  height: 75px !important;
+}
+.custom-modal-width {
+    max-width: 1260px !important;
+    /* Adjust this value as needed */
+}

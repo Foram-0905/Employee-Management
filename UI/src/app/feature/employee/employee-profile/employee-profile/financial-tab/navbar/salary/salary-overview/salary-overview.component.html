@@ -1,0 +1,45 @@
+
+
+    <div class="right__part">
+        <!-- <div class="cont cont2_1"> -->
+        <div class="common_title">
+            <h2 class="h2 mb-0">
+                Salary Overview
+            </h2>
+        </div>
+        <div class="table_space">
+            <div class="table_scroll no_scroll">
+                <app-beon-grid [showEditButton]="showEdit" [showDeleteButton]="showDelete"
+                    [dataRowSource]="dataRowSource" [columnDefs]="columnDefs" (onEdit)="onEditClick($event)"
+                    (onDelete)="onDeleteClick($event)" [totalPages]="totalPages" [totalItems]="totalItems">
+                </app-beon-grid>
+            </div>
+        </div>
+
+        <div class="modal fade" tabindex="-1" aria-labelledby="AddEditModalToggleLabel" #addEditModal
+            id="AddEditModalToggle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered custom-modal-width">
+                <div class="form-box modal-content">
+                    <div class="popup">
+                        <div class="popup-title">
+                            <h3 *ngIf="salary.id">
+                                {{
+                                "i18n.configuration.manageCountryDetails.editCountry"
+                                | translate
+                                }}
+                            </h3>
+
+
+                        </div>
+                        <div>
+                            <button type="button" #closeButton class="btn-close btn-close-white" (click)="closeModal()"
+                                data-bs-dismiss="modal"></button>
+                        </div>
+                        <!-- (click)="onRemoveClick()" aria-label="Close" -->
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <!-- </div> -->
+    </div>

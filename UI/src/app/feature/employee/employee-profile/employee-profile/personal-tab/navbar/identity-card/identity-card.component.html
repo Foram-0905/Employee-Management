@@ -1,0 +1,161 @@
+<!-- <app-passport></app-passport>
+<app-visa></app-visa>
+<app-blue-card></app-blue-card>
+<app-other-work-permits></app-other-work-permits> -->
+
+<div class="right__part">
+    <div class="cont cont1_3">
+        <form (ngSubmit)="SaveIdentityCard()">
+            <div class="common_form">
+
+                <div class="common_title">
+                    <h2 class="h2">{{'i18n.employeeProfile.personal-details.identiyCardDetails.Passport'| translate}}
+                    </h2>
+                </div>
+                
+                <div class="form_fields">
+                    <form>
+                        <ul>
+                            <li>
+                                <label>{{'i18n.employeeProfile.personal-details.identiyCardDetails.Document'|translate}}</label>
+                                <div class="file-input">
+                                    <input type="file" #passprt (change)="onPassportFileSelected($event)">
+                                    <span class="label" data-js-label="UploadFile">{{selectedPassportFileName}}</span>
+                                    <span class="button"><img src="assets/image/upload.svg" alt="cloud"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+            <div class="common_form">
+                <div class="common_title">
+                    <h2 class="h2">{{'i18n.employeeProfile.personal-details.identiyCardDetails.Visa'|translate}}</h2>
+                </div>
+                <div class="form_fields">
+                    <form>
+                        <ul>
+                            <li>
+                                <label>{{'i18n.employeeProfile.personal-details.identiyCardDetails.StartDate'|translate}}</label><br />
+                                <input type="date" placeholder="dd/mm/yyyy" id="visaStartDate"
+                                    [(ngModel)]="identity.visaStartDate" name="visaStartDate" max="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}">
+                            </li>
+                            <li>
+                                <label>{{'i18n.employeeProfile.personal-details.identiyCardDetails.ExpiryDate'|translate}}</label>
+                                <input type="date" placeholder="dd/mm/yyyy" id="visaExpiryDate"
+                                    [(ngModel)]="identity.visaExpiryDate" name="visaExpiryDate" min="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}">
+                            </li>
+                            <li>
+                                <label>{{'i18n.employeeProfile.personal-details.identiyCardDetails.Document'|translate}}</label>
+                                <div class="file-input">
+                                    <input type="file" #visa (change)="onVisaFileSelected($event)">
+                                    <span class="label" data-js-label="UploadFile">{{selectedVisaFileName}}</span>
+                                    <span class="button"><img src="assets/image/upload.svg" alt="cloud"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+            <div class="common_form">
+                <div class="common_title">
+                    <h2 class="h2">{{'i18n.employeeProfile.personal-details.identiyCardDetails.BlueCard'|translate}}
+                    </h2>
+                </div>
+                <div class="form_fields">
+                    <form>
+                        <ul>
+                            <li>
+                                <label>{{'i18n.employeeProfile.personal-details.identiyCardDetails.StartDate'|translate}}</label>
+                                <input type="date" placeholder="dd/mm/yyyy" id="blueCardStartDate"
+                                    [(ngModel)]="identity.blueCardStartDate" name="blueCardStartDate" max="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}">
+                            </li>
+                            <li>
+                                <label>{{'i18n.employeeProfile.personal-details.identiyCardDetails.ExpiryDate'|translate}}</label>
+                                <input type="date" placeholder="dd/mm/yyyy" id="blueCardExpiryDate"
+                                    [(ngModel)]="identity.blueCardExpiryDate" name="blueCardExpiryDate" min="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}">
+                            </li>
+                            <li>
+                                <label>{{'i18n.employeeProfile.personal-details.identiyCardDetails.Document'|translate}}</label>
+                                <div class="file-input">
+                                    <input type="file" #blueCard (change)="onBlueCardFileSelected($event)">
+                                    <span class="label" data-js-label="UploadFile">{{selectedBluecardFileName}}</span>
+                                    <span class="button"><img src="assets/image/upload.svg" alt="cloud"></span>
+                                </div>
+                            </li>
+                        </ul>
+                    </form>
+                </div>
+            </div>
+            <div class="common_form">
+                <div class="common_title">
+                    <h2 class="h2">
+                        {{'i18n.employeeProfile.personal-details.identiyCardDetails.OtherWorkPermits'|translate}}
+                    </h2>
+                </div>
+                <div class="form_fields">
+                    <form [formGroup]="WorkPermit" (ngSubmit)="onSubmit()">
+                        <ul>
+                            <li>
+                                <label>{{ 'i18n.employeeProfile.personal-details.identiyCardDetails.TypeOfPermit' | translate }}</label>
+                                <input type="text" placeholder="Type Of Permit" formControlName="permitType" name="permitType" />
+                            </li>
+                            <li>
+                                <label>{{ 'i18n.employeeProfile.personal-details.identiyCardDetails.StartDate' | translate }}</label>
+                                <input type="date" id="permitStartDate" formControlName="permitStartdate" name="permitStartDate"  max="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}" />
+                            </li>
+                            <li>
+                                <label>{{ 'i18n.employeeProfile.personal-details.identiyCardDetails.ExpiryDate' | translate }}</label>
+                                <input type="date" id="permitExpiryDate" formControlName="permitExpirytdate" name="permitExpiryDate" [min]="workpermitDetail.permitStartDate" min="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}" />
+                            </li>
+                            <li>
+                                <label>{{ 'i18n.employeeProfile.personal-details.identiyCardDetails.Document' | translate }}</label>
+                                <div class="file-input">
+                                    <input type="file" #fileUpload (change)="onFileSelected($event)" />
+                                    <span class="label" data-js-label="">{{ selectedFileName }}</span>
+                                    <span class="button"><img src="assets/image/upload.svg" alt="cloud" /></span>
+                                </div>
+                            </li>
+                        </ul>
+                        <input type="submit" class="btn btn-primary ml-25 mb-20" [value]="isEditMode ? 'Update' : 'Add'" />
+                    </form>
+                </div>
+                
+
+                <br />
+                <br />
+                <div class="table_part">
+                    <div class="table_space">
+                        <div class="table_scroll no_scroll">
+                            <app-beon-grid [showEditButton]="hasPermission('employeeprofile.identitycards.Edit')" [showDeleteButton]="hasPermission('employeeprofile.identitycards.Delete')"
+                                [dataRowSource]="dataRowSource" [columnDefs]="columnDefs" (onEdit)="onEditClick($event)"
+                                (onDelete)="onDeleteClick($event)" [totalPages]="totalPages"
+                                [totalItems]="totalItems"></app-beon-grid>
+                        </div>
+                    </div>
+
+                    <div class="modal fade" tabindex="-1" aria-labelledby="AddEditModalToggleLabel" #addEditModal
+                        id="AddEditModalToggle" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered custom-modal-width">
+                            <div class="form-box modal-content">
+                                <div class="popup">
+                                    <div class="popup-title">
+                                        <h3 *ngIf="identity.id">{{ "i18n.configuration.manageCountryDetails.editCountry"
+                                            | translate }}</h3>
+                                    </div>
+                                    <div>
+                                        <button type="button" #closeButton class="btn-close btn-close-white"
+                                            (click)="closeModal()" data-bs-dismiss="modal"></button>
+                                    </div>
+                                    <!-- (click)="onRemoveClick()" aria-label="Close" -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <input type="submit" class="ml_25" value="Save" *ngIf="this.hasPermission('employeeprofile.identitycards.Add')" >
+        </form>
+    </div>
+</div>

@@ -1,0 +1,53 @@
+<div class="header">
+    <p>{{'i18n.configuration.managePublicHoliday'| translate}}</p>
+    <button class="btn_add" data-bs-toggle="modal" href="#AddEditModalToggle" role="button"> {{'i18n.configuration.managePublicHolidayDetails.add'|translate}}</button>
+</div>
+
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered custom-modal-width">
+        <div class="form-box modal-content">
+            <div class="popup">
+                <div class="popup-title">
+                    <h3>{{'i18n.configuration.managePublicHolidayDetails.addHoliday'|translate}}</h3>
+                </div>
+                <div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+            </div>
+            <form>
+                <div class="form-fields three-column popup-forms">
+                    <div>
+                        <label for="country">{{'i18n.configuration.managePublicHolidayDetails.Country'|translate}} </label><br />
+                        <div class="select-wrapper">
+                            <select id="employee" name="employee">
+                                <option>Uk</option>
+                            </select>
+                            <div class="select-arrow"><i class="bi bi-chevron-compact-down"></i></div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="country">Federal/State</label>
+                        <div class="select-wrapper">
+                            <select id="employee" name="employee">
+                                <option>yorkshire</option>
+                            </select>
+                            <div class="select-arrow"><i class="bi bi-chevron-compact-down"></i></div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="holidayname">Holiday Name</label>
+                        <input type="text" id="holidayname" name="holidayname" ngModel placeholder="Holiday Name">
+                    </div>
+
+                    <div>
+                        <label for="relevant-work-experience">Holiday Date</label>
+                        <input type="date" id="relevant-work-experience" name="relevantExperience" ngModel
+                            placeholder="dd-mm-yy" required>
+                    </div>
+
+                </div>
+                <input type="submit" class="btn btn-primary ml-25" value="Add">
+            </form>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="right__part">
+
+    <div class="cont cont1_3">
+        <div class="common_form">
+            <div class="common_title">
+                <h2 class="h2">{{'i18n.employeeProfile.personal-details.documents'|translate}}</h2>
+            </div>
+            <div class="form_fields">
+                <form (ngSubmit)="SaveDocument()">
+                    <ul>
+                        <li>
+                            <label>{{'i18n.employeeProfile.personal-details.documents-details.PersonalDataProtection'|translate}}</label>
+                            <div class="file-input">
+                                <input type="file" #PersonalDataProtection
+                                    (change)="onPersonalDataProtectionFileSelected($event)">
+                                <span class="label" data-js-label="">{{selectedFileName}}</span>
+                                <span class="button"><img src="/assets/image/upload.svg" alt="cloud"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label>{{'i18n.employeeProfile.personal-details.documents-details.ConfidentialityAgreement'|translate}}</label>
+                            <div class="file-input">
+                                <input type="file" #ConfidentialityAgreement
+                                    (change)="onFileConfidentialityAgreementSelected($event)">
+                                <span class="label" data-js-label="">{{selectedConfidentialityAgreement}}</span>
+                                <span class="button"><img src="/assets/image/upload.svg" alt="cloud"></span>
+                            </div>
+                        </li>
+                        <li>
+                            <label>{{'i18n.employeeProfile.personal-details.documents-details.Other'|translate}}</label>
+                            <div class="file-input">
+                                <input type="file" #Other (change)="onFileOther($event)">
+                                <span class="label" data-js-label="">{{selectedOther}}</span>
+                                <span class="button"><img src="/assets/image/upload.svg" alt="cloud"></span>
+                            </div>
+                        </li>
+                    </ul>
+                    <input type="submit" class="btn btn-primary ml-25 mb-20" value="Save">
+                </form>
+            </div>
+            <div class="table_space">
+                <div class="table_scroll">
+                    <app-beon-grid [showDownloadButton]="showDownload" [dataRowSource]="dataRowSource"
+                        [columnDefs]="columnDefs" (onDelete)="onDeleteClick($event)" (onDownload)="onDownloadClick($event)" [totalPages]="totalPages"
+                        [totalItems]="totalItems" (getDataRowsourse)="getDataRowsourse($event)"
+                        (ongridReady)="gridReady($event)"></app-beon-grid>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!--Delete Modal -->
+<div class="Modal" *ngIf="showDeleteModal">
+    <div class="Modal-content">
+        <div class="Modal-header">
+            <h2 class="fnt-color"><strong>{{ 'i18n.Common.DeleteConfirmation' | translate }}</strong></h2>
+        </div>
+        <div class="Modal-body">
+            <span style="color: black">
+                {{ 'i18n.Common.SureDelete' | translate }}
+                <span> {{ DeleteDocumentList }}</span>
+            </span>
+        </div>
+        <div class="Modal-footer">
+            <button type="button" class="btn btn-secondary me-2" (click)="cancelDelete()" data-dismiss="modal">
+                {{ 'i18n.Common.Cancel' | translate }}
+            </button>
+            <button type="button" class="btn btn-danger" (click)="deleteItem()">
+                {{ 'i18n.Common.Delete' | translate }}
+            </button>
+        </div>
+    </div>
+</div>
+
+
+

@@ -1,0 +1,43 @@
+<div class="right__part">
+  <div class="cont cont1_4">
+    <div class="common_form">
+      <div class="common_title">
+        <h2 class="h2">{{ "i18n.employeeProfile.personal-details.assetsDetails.assetsAssignment" | translate }}</h2>
+      </div>
+
+      <button #addBtn id="openModalButton" class="btn btn-primary ml_25" data-bs-toggle="modal"
+        data-bs-target="#AddEditModalToggle" role="button">
+        {{ "i18n.employeeProfile.personal-details.assetsDetails.selectAssets" | translate }}
+      </button>
+
+      <div class="modal fade" tabindex="-1" aria-labelledby="AddEditModalToggleLabel" #addEditModal
+        id="AddEditModalToggle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered custom-modal-width">
+          <div class="form-box modal-content">
+            <div class="popup">
+              <div class="popup-title">
+                <h3>
+                  {{ "i18n.employeeProfile.personal-details.assetsDetails.assignment" | translate }}
+                </h3>
+              </div>
+              <div>
+                <button type="button" #closeButton (click)="closeModal()" class="btn-close btn-close-white"
+                  data-bs-dismiss="modal"></button>
+              </div>
+            </div>
+            <div class="table_space">
+
+              <div class="table_scroll">
+                <button class="btn btn-primary  my-3" (click)="saveSelectedAssets()">Save</button>
+                <app-beon-grid *ngIf="columnDefs.length > 0" [dataRowSource]="dataRowSource"
+                  [columnDefs]="columnDefs" (onCheckboxButtonClick)="onCheckboxClick($event)" [totalPages]="totalPages"
+                  [totalItems]="totalItems" (getDataRowsourse)="getDataRowsourse($event)"
+                  (ongridReady)="gridReady($event)"></app-beon-grid>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

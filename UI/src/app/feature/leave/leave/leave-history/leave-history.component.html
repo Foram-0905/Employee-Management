@@ -1,0 +1,32 @@
+<div class="common_form">
+  <div class="common_title">
+    <h2 class="h2 mb-0" >
+      {{  "i18n.leave.employeeLeaveBalance.leaveHistory" | translate }}
+    </h2>
+  </div>
+  <div class="table_space p-4 h-50" >
+    <ng-container *ngIf="activeTab == 'employeeLeaveBalance'">
+    <div class="table_scroll">
+      <app-beon-grid
+        [dataRowSource]="employeeLeavesHistory"
+        [columnDefs]="columnDefsEmployee"
+        [totalPages]="totalPages" [totalItems]="totalItems"
+        (getDataRowsourse)="getDataRowsourse($event)"
+        (ongridReady)="gridReady($event)"
+      ></app-beon-grid>
+    </div>
+    </ng-container>
+    <ng-container *ngIf="activeTab == 'officeManagementBalance'">
+      <div class="table_scroll">
+        <app-beon-grid
+          [dataRowSource]="employeeLeavesHistory"
+          [columnDefs]="columnDefsOffice"
+          [totalPages]="totalPages"
+          [totalItems]="totalItems"
+          (getDataRowsourse)="getDataRowsourse($event)"
+          (ongridReady)="gridReady($event)"
+        ></app-beon-grid>
+      </div>
+      </ng-container>
+  </div>
+</div>

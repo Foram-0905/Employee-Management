@@ -1,0 +1,32 @@
+<div class="header">
+    <p>{{ 'i18n.configuration.educationLevelDetails.manageeducationlevel' | translate }}</p>
+    <button class="btn_add" data-bs-toggle="modal" data-bs-target="#AddEditModalToggle" role="button">
+      {{ 'i18n.configuration.educationLevelDetails.add' | translate }}
+    </button>
+  </div>
+
+  <div class="modal fade" id="exampleModalToggle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered custom-modal-width">
+      <div class="form-box modal-content">
+        <div class="popup">
+          <div class="popup-title">
+            <h3>{{ 'i18n.configuration.educationLevelDetails.addeducationlevel' | translate }}</h3>
+          </div>
+          <div>
+            <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+          </div>
+        </div>
+        <form  (ngSubmit)="Save_eductionlevel()">
+          <div class="form-fields three-column popup-forms">
+            <!-- [(ngModel)]="Education.level" -->
+            <div>
+              <label for="Education Level">{{ 'i18n.configuration.educationLevelDetails.educationlevel' | translate }}</label>
+              <input type="text" id="Education Level" name="level"
+                placeholder="{{ 'i18n.configuration.educationLevelDetails.graduation' | translate }}" required>
+            </div>
+          </div>
+          <input type="submit" class="btn btn-primary ml-25" value="{{ 'i18n.configuration.educationLevelDetails.add' | translate }}">
+        </form>
+      </div>
+    </div>
+  </div>

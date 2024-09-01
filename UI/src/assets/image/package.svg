@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20" height="22.11" viewBox="0 0 20 22.11">
+  <defs>
+    <clipPath id="clip-path">
+      <rect width="20" height="22.11" fill="none"/>
+    </clipPath>
+  </defs>
+  <g id="package" opacity="0.8" clip-path="url(#clip-path)">
+    <line id="Line_4" data-name="Line 4" x1="9" y1="5.19" transform="translate(5.5 3.24)" fill="none" stroke="#11cdef" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Path_439" data-name="Path 439" d="M21,16V8a2,2,0,0,0-1-1.73l-7-4a2,2,0,0,0-2,0l-7,4A2,2,0,0,0,3,8v8a2,2,0,0,0,1,1.73l7,4a2,2,0,0,0,2,0l7-4A2,2,0,0,0,21,16Z" transform="translate(-2 -0.97)" fill="none" stroke="#11cdef" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <path id="Path_440" data-name="Path 440" d="M3.27,6.96,12,12.01l8.73-5.05" transform="translate(-2 -0.97)" fill="none" stroke="#11cdef" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+    <line id="Line_5" data-name="Line 5" y1="10.08" transform="translate(10 11.03)" fill="none" stroke="#11cdef" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+  </g>
+</svg>

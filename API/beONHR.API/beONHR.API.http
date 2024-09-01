@@ -1,0 +1,6 @@
+@beONHR.API_HostAddress = http://localhost:5144
+
+GET {{beONHR.API_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

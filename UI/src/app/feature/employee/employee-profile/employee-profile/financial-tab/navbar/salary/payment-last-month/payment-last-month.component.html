@@ -1,0 +1,18 @@
+<div class="right__part">
+
+    <div class="common_title">
+        <h2 class="h2 mb-0">
+            Payment Last Month
+        </h2>
+    </div>
+        <div class="table_space">
+            <div class="table_scroll no_scroll">
+                <app-beon-grid [showEditButton]="showEdit" [showDeleteButton]="showDelete"
+                    [dataRowSource]="dataRowSource" [columnDefs]="columnDefs" (onEdit)="onEditClick($event)"
+                    (onDelete)="onDeleteClick($event)" [totalPages]="totalPages" [totalItems]="totalItems"
+                    >
+                </app-beon-grid>
+            </div>
+        </div>
+ 
+</div>

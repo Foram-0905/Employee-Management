@@ -1,0 +1,59 @@
+<div class="common_form">
+  <div class="common_title">
+    <h2 class="h2 mb-0">
+      {{'i18n.organisationalChart.organisationalChart'| translate}}
+    </h2>
+  </div>
+
+  <div class="table_space">
+    <div class="org_scroll">
+      <div class="legend">
+        <div class="legend-item">
+          <span class="legend-color corporate-color"></span>
+          <span>{{'i18n.organisationalChart.corporateArea'| translate}}</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-color consultant-color"></span>
+          <span>{{'i18n.organisationalChart.consultingArea'| translate}}</span>
+        </div>
+      </div>
+      <div *ngFor="let group of data" class="group-container">
+        <hr>
+        <h2>{{ group.name }}</h2>
+        <div class="employees-row">
+          <div *ngFor="let employee of group.employees" class="employee-card">
+            <img
+              [src]="employee.employeementType === 'Consultant' ? 'assets/image/shape-profile.svg' : 'assets/image/yellow-shape.svg'"
+              alt="{{ employee.employeeName }}" class="employee-image" />
+            <div class="employee-details">
+              <div class="employee-designation">{{ employee.designation }}</div>
+              <br>
+              <div class="employee-name"
+                [ngStyle]="{ 'color': employee.employeementType === 'Consultant' ? '#0C7CBF' : '#FDC031' }">
+                {{ employee.employeeName }}
+              </div>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+<!-- <p-tree [value]="data" selectionMode="single" class="orgchart">
+    <ng-template let-node pTemplate="person">
+      <div class="node-content">
+        <img src="path/to/your/default/image.jpg" alt="{{node.data.name}}" class="node-image"/>
+        <div>
+          <div class="node-header">{{ node.data.name }}</div>
+          <div class="node-subheader">{{ node.data.designation }}</div>
+          <div class="node-employmentType">{{ node.data.employmentType }}</div>
+        </div>
+      </div>
+    </ng-template>
+  </p-tree>
+   -->

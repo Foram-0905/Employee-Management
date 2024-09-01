@@ -1,0 +1,33 @@
+<div class="common_form">
+    <div class="table_part last_spacing">
+      <div class="common_title all_employee">
+        <h2 class="h2 mb-0">Employees</h2>
+        <div class="search_count">
+          <div class="search_right">
+            <form (ngSubmit)="commonSearchWithinGrid()" (input)="onSearchInput($event)" class="reset">
+              <input type="search" name="commonSearchText" [(ngModel)]="searchText" />
+              <input type="submit" value="Search" />
+            </form>
+          </div>
+          <div class="AddEmployeeButton">
+            <input type="submit"  value="Add Employee" (click)="AddEmployee()" *ngIf="hasPermission('employeeprofile.personal.Add')">
+          </div>
+        </div>
+      </div>
+      <div class="table_space">
+        <div class="table_scroll">
+          <app-beon-grid
+            [showEditButton]="showEdit"
+            [dataRowSource]="dataRowSource"
+            [columnDefs]="columnDefs"
+            (onEdit)="onEditClick($event)"
+            [totalPages]="totalPages"
+            [totalItems]="totalItems"
+            (getDataRowsourse)="getDataRowsourse($event)"
+            (ongridReady)="gridReady($event)"
+          ></app-beon-grid>
+        </div>
+      </div>
+    </div>
+  </div>
+  

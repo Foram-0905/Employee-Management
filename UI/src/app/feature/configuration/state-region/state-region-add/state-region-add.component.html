@@ -1,0 +1,46 @@
+<div class="common_title">
+  <h2 class="h2 mb-0">{{'i18n.configuration.stateRegion' | translate}}</h2>
+  <button class="btn  btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" role="button">
+    {{'i18n.configuration.stateRegionDetails.add' | translate}}
+  </button>
+
+</div>
+<div class="modal fade" id="exampleModal" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered custom-modal-width">
+    <div class="form-box modal-content">
+      <div class="popup">
+        <div class="popup-title">
+          <h3>{{'i18n.configuration.stateRegionDetails.addstate/region' | translate}}</h3>
+        </div>
+        <div>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+            style="color: white;"></button>
+        </div>
+      </div>
+      <form (ngSubmit)="SaveState()">
+        <div class="form-fields three-column popup-forms">
+          <div>
+            <label for="Country">{{'i18n.configuration.stateRegionDetails.country' | translate}}</label>
+            <div class="select-wrapper">
+              <select name="countryId" [(ngModel)]="State_region.countryId" required>
+                <ng-container *ngFor="let item of Country">
+                  <option [value]="item.Id">{{item.value}}</option>
+                </ng-container>
+              </select>
+            </div>
+          </div>
+
+          <div>
+            <label for="State/RegionName">{{'i18n.configuration.stateRegionDetails.state/regionname' |
+              translate}}</label>
+            <input type="text" id="State/Region Name" name="name" [(ngModel)]="State_region.name"
+              placeholder="{{'i18n.configuration.stateRegionDetails.berlin' | translate}}" required>
+          </div>
+        </div>
+        <input type="submit" class="btn btn-primary ml-25"
+          value="{{'i18n.configuration.stateRegionDetails.add' | translate}}">
+      </form>
+    </div>
+
+  </div>
+</div>

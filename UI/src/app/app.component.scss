@@ -1,0 +1,57 @@
+.main {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    min-height: 100vh;
+}
+
+.header {
+    width: 100%;
+}
+
+.content {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    flex-grow: 1; // Ensures the content grows to take available space
+    overflow: auto;
+    // border: 1px solid;
+}
+
+.slg-list {
+    // border: 1px solid;
+    width: 100%;
+    overflow: auto;
+    margin-left: 90px;
+}
+
+
+.ml-67 {
+    padding-left: 67px;
+    // width: calc(100% - 67px);
+    
+    z-index: 10;
+}
+
+.ml-250 {
+    padding-left: 265px;
+    width: calc(100% + 198px);
+
+    z-index: 10;
+}
+
+
+@import './styles/abstracts/variable';
+
+.beOn_main {
+    
+    
+    // display: flex;
+    // justify-content: center;
+    background-color: #F1F3F9;
+    // height: 830px;
+    // padding-bottom: 20px;
+    height:auto;
+    // width: 1480px;
+    
+}

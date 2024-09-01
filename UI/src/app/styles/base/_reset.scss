@@ -1,0 +1,59 @@
+// _reset.scss
+
+// Box Sizing
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+// Typography
+html {
+  font-family: 'Poppins', sans-serif;
+  font-size: 16px;
+}
+
+body {
+  line-height: 1.5;
+  color: #000; /* Adjust as needed */
+  background-color: #fff; /* Adjust as needed */
+}
+
+// Links
+a {
+  text-decoration: none;
+  color: #0079bf; /* Adjust as needed */
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+// Lists
+ul,
+ol {
+  list-style: none;
+}
+
+// Forms
+input,
+button,
+textarea,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  outline: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+// Images
+img {
+  max-width: 100%;
+  height: auto;
+}

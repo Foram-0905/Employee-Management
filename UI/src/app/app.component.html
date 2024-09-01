@@ -1,0 +1,25 @@
+<!-- app-componenet.html -->
+ <div (mousemove)="onUserActive()" (click)="onUserActive()" (keypress)="onUserActive()">
+    <div class="beOn_main"
+    [ngClass]="[ loginService.isUserAuthenticated() ? (isNavigationCollapsed ? 'ml-67' : 'ml-250') : 'container-fluid']">
+        <div *ngIf="loginService.isUserAuthenticated()" >
+            <app-navigation *ngIf="loginService.isUserAuthenticated()" (isCollapsedNavigation)="getNavigationWidth($event)"></app-navigation>
+
+   
+        <app-header *ngIf="loginService.isUserAuthenticated()"></app-header>
+        <div class="w-100">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>
+
+
+<div *ngIf="!loginService.isUserAuthenticated()">
+    <ng-container>
+        <router-outlet ></router-outlet>
+    </ng-container>
+</div>
+<ngx-spinner
+  template="<img src='./../assets/image/Spinner.gif'/>">
+</ngx-spinner>
+</div>

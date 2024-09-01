@@ -1,0 +1,195 @@
+<div class="common_form">
+  <div class="common_title">
+    <h2 class="h2 mb-0">
+      {{ "i18n.configuration.manageAsset" | translate }}
+    </h2>
+    <button #addBtn id="openModalButton" class="btn btn-primary" data-bs-toggle="modal"
+      data-bs-target="#AddEditModalToggle" role="button" *ngIf="hasPermission('configuration.manageasset.Add')">
+      {{ "i18n.Common.Add" | translate }}
+    </button>
+  </div>
+
+  <div class="search_count">
+    <div class="search_right">
+      <form (ngSubmit)="commonSearchWithinGrid()" (input)="onSearchInput($event)" class="reset">
+        <input type="search" [placeholder]="'i18n.Common.Search' | translate" name="commonSearchText" [(ngModel)]="searchText" />
+        <input type="submit" value="Search" />
+      </form>
+    </div>
+  </div>
+
+  <div class="table_space">
+    <div class="table_scroll">
+      <app-beon-grid *ngIf="columnDefs.length > 0" [showDownloadButton]="showDownload" [showEditButton]="hasPermission('configuration.manageasset.Edit')" [showDeleteButton]="hasPermission('configuration.manageasset.Delete')" [dataRowSource]="dataRowSource"
+        [columnDefs]="columnDefs" (onEdit)="onEditClick($event)" (onDelete)="onDeleteClick($event)" (onDownload)="onDownloadClick($event)"
+        [totalPages]="totalPages" [totalItems]="totalItems" (getDataRowsourse)="getDataRowsourse($event)"
+        (ongridReady)="gridReady($event)"></app-beon-grid>
+    </div>
+  </div>
+
+  <div class="modal fade" tabindex="-1" aria-labelledby="AddEditModalToggleLabel" #addEditModal id="AddEditModalToggle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered custom-modal-width">
+      <div class="form-box modal-content">
+        <div class="popup">
+          <div class="popup-title">
+            <h3 *ngIf="assets.id">
+              {{
+              "i18n.configuration.manageCurrencyDetails.editcurrency"
+              | translate
+              }}
+            </h3>
+
+            <h3 *ngIf="!assets.id">
+              {{
+              "i18n.configuration.manageAssetDetails.addassets"
+              | translate
+              }}
+            </h3>
+          </div>
+          <div>
+            <button type="button" #closeButton (click)="closeModal()" class="btn-close btn-close-white"
+              data-bs-dismiss="modal"></button>
+          </div>
+        </div>
+        <form (ngSubmit)="addAsset()">
+          <div class="form-fields four-column popup-forms">
+            <div>
+              <label for="assests-serial-number">{{ 'i18n.configuration.manageAssetDetails.serialnumber' | translate }}</label>
+              <input type="text" id="assests-serial-number" name="assests-serial-number"
+                [(ngModel)]="assets.serialNumber" [placeholder]="'i18n.configuration.manageAssetDetails.serialnumber' | translate">
+            </div>
+            <div>
+              <label for="assests-status">{{ 'i18n.configuration.manageAssetDetails.status' | translate }}</label>
+              <div class="select-wrapper">
+                <select id="assests-status" name="assests-status" [(ngModel)]="assets.status" (change)="onStatusChange($event)" required>
+                  <!-- (change)="onStatusChange($event)" -->
+                  <option value="" disabled selected hidden>{{ 'i18n.configuration.manageAssetDetails.status' | translate }}</option>
+                  <option *ngFor="let status of assetsStatus" [value]="status.id">
+                    {{ 'i18n.configuration.manageAssetDetails.statusDetails.' + status.translationKey | translate }}
+                  </option>
+                </select>
+                <div class="select-arrow"></div>
+              </div>
+              
+            </div>
+            <div>
+              <label for="assests-manufacturer">{{ 'i18n.configuration.manageAssetDetails.manufacturer' | translate
+                }}</label>
+              <input type="text" id="assests-manufacturer" name="assests-manufacturer" [(ngModel)]="assets.manufacturer"
+              [placeholder]="'i18n.configuration.manageAssetDetails.enterManufacture' | translate">
+            </div>
+            <div>
+              <label for="assets-type">{{ 'i18n.configuration.manageAssetDetails.assetstype' | translate }}</label>
+              <div class="select-wrapper">
+                <select id="assets-type" name="assets-type" [(ngModel)]="assets.assetType">
+                  <option *ngFor="let type of assetTypes" [value]="type.id">
+                    {{ type.translationKey | translate }}</option>
+                </select>
+                <div class="select-arrow"></div>
+              </div>
+            </div>
+
+            <div>
+              <label for="assests-model">{{'i18n.configuration.manageAssetDetails.model'|translate}}</label>
+              <input type="text" id="assests-model" name="assests-model" [placeholder]="'i18n.configuration.manageAssetDetails.enterModel' | translate"
+                [(ngModel)]="assets.model">
+            </div>
+            <div>
+              <label
+                for="assests-more-details">{{'i18n.configuration.manageAssetDetails.moreDetails'|translate}}</label>
+              <input type="text" id="assests-more-details" name="assests-more-details" placeholder="..."
+                [(ngModel)]="assets.moreDetails">
+            </div>
+            <div>
+              <label for="assets-purchase-date">{{ 'i18n.configuration.manageAssetDetails.purchaseDate' | translate }}</label>
+              <input type="date" id="assets-purchase-date" name="assets-purchase-date" 
+                     [(ngModel)]="assets.purchaseDate" 
+                     max="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}">
+            </div>
+            <div>
+              <label for="assets-warranty-date">{{ 'i18n.configuration.manageAssetDetails.warrantyDueDate' | translate }}</label>
+              <input type="date" id="assets-warranty-date" name="assets-warranty-date" 
+                     [(ngModel)]="assets.warrantyDueDate" 
+                     min="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}">
+            </div>
+            
+
+            <div>
+              <label for="file-upload" class="file-label">{{'i18n.configuration.manageAssetDetails.warranty'|translate}}
+                <i class="fas fa-cloud-upload-alt"></i>
+
+                <div class="file-input-box">
+                  <input type="file" id="file-upload" #fileUpload name="file-upload" style="display: none;"
+                    (change)="onFileSelected($event)" >
+                  <div class="file-name">{{ selectedFileName }}</div>
+                  <i class="bi bi-cloud-upload"></i>
+                </div>
+              </label>
+            </div>
+
+            <div>
+              <label for="assets-current-owner">{{ 'i18n.configuration.manageAssetDetails.selectCurrentOwner' |
+                translate }}</label>
+              <div class="select-wrapper">
+                <select (change)="onSelect($event)" [(ngModel)]="assets.currentOwner" name="currentOwner" aria-placeholder="Select Current Owner">
+                  <option value="null">None</option>
+                  <option *ngFor="let employee of employees" [value]="employee.id">{{employee.fullName }}</option>
+                </select>
+                <div class="select-arrow"></div>
+              </div>
+            </div>
+
+            <div>
+              <label for="assets-previous-owner">{{ 'i18n.configuration.manageAssetDetails.selectPreviousOwner' | translate
+                }}</label>
+              <div class="select-wrapper">
+                <select (change)="onSelect2($event)" [(ngModel)]="assets.previousOwner" name="previousOwner" aria-placeholder="Select Previous Owner">
+                  <option value="null">None</option>
+                  <option *ngFor="let employee of employees" [value]="employee.id">{{employee.fullName }}</option>
+                </select>
+                <div class="select-arrow"></div>
+              </div>
+            </div>
+
+            <!-- style="width: 100%; height: 100px; resize: none;" -->
+            <div>
+              <!-- BLANK  -->
+            </div>
+            <div id="textarea_width">
+              <label for="assets-note">{{'i18n.configuration.manageAssetDetails.note'|translate}}</label>
+              <textarea id="assets-note" name="assets-note" [placeholder]="'i18n.configuration.manageAssetDetails.message' | translate" [(ngModel)]="assets.note"></textarea>
+            </div>
+          </div>
+          <input type="submit" class="btn btn-primary ml-25 mb-20" value="{{ 'i18n.Common.Update' | translate }}"
+            *ngIf="assets.id" />
+          <input type="submit" class="btn btn-primary ml-25 mb-20" value="{{ 'i18n.Common.Add' | translate }}"
+            *ngIf="!assets.id" />
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Delete Modal -->
+<div class="Modal" *ngIf="showDeleteModal">
+  <div class="Modal-content">
+    <div class="Modal-header">
+      <h2 class="fnt-color"><strong>{{ 'i18n.Common.DeleteConfirmation' | translate }}</strong></h2>
+    </div>
+    <div class="Modal-body">
+      <span style="color: black">
+        {{ 'i18n.Common.SureDelete' | translate }}
+        <span> {{ DeleteAsset }} {{ 'i18n.configuration.manageAssetDetails.assets' | translate }} ?</span>
+      </span>
+    </div>
+    <div class="Modal-footer">
+      <button type="button" class="btn btn-secondary me-2" (click)="cancelDelete()" data-dismiss="modal">
+        {{ 'i18n.Common.Cancel' | translate }}
+      </button>
+      <button type="button" class="btn btn-danger" (click)="deleteItem()">
+        {{ 'i18n.Common.Delete' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

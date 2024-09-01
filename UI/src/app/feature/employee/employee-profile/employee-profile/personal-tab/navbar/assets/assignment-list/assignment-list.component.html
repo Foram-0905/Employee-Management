@@ -1,0 +1,16 @@
+<div class="right__part">
+    <div class="cont cont1_4">
+        <div class="common_form">
+            <div class="common_title">
+                <h2 class="h2">Assets Assignment List</h2>
+            </div>
+            <div class="table_space">
+                <div class="table_scroll">
+                    <app-beon-grid *ngIf="columnDefs.length > 0" [dataRowSource]="dataRowSource" [columnDefs]="columnDefs" [totalPages]="totalPages"
+                        [totalItems]="totalItems" (getDataRowsourse)="getDataRowsourse($event)"
+                        (ongridReady)="gridReady($event)"></app-beon-grid>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

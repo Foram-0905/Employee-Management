@@ -1,0 +1,258 @@
+<!-- <app-salary></app-salary> -->
+
+<div class="right__part">
+    <div class="cont cont3_1">
+        <div class="common_form">
+            <div class="common_title">
+                <h2 class="h2">{{'i18n.employeeProfile.finance-details.salary'|translate}}</h2>
+                <!-- 
+                <div class="mr-15" >
+                    <label for="Employee">{{'i18n.employeeProfile.finance-details.salary-details.Employee'|translate}}</label>
+                    <select name="Employee" aria-placeholder="Employee" (change)="onEmployeeSelect($event)">
+                      
+                        <ng-container *ngFor="let emp of allEmployee"  >
+                           
+                            <option [value]="emp.id">{{emp.fullName}}</option>
+                        </ng-container>
+                    </select>
+                </div> -->
+            </div>
+
+            <div>
+                <div class="form-box">
+                    <form (ngSubmit)="SaveSalary()">
+                        <div class="form-fields popup-forms">
+                            <div>
+                                <label
+                                    for="Category">{{'i18n.employeeProfile.finance-details.salary-details.SalaryType'|translate}}</label>
+                                <!-- [(ngModel)]="salary.salaryType" -->
+
+                                <select name="SalaryType" (change)="onCategorySelect($event)">
+                                    <ng-container>
+                                        <option selected>Select Salary Type</option>
+                                        <option *ngFor="let item of SalaryTypes"
+                                            [selected]="item.id == salary.salaryType" [value]="item.id">
+                                            <select name="SalaryType" (change)="onCategorySelect($event)">
+                                                <ng-container>
+                                                    <option selected>
+                                                        {{'i18n.employeeProfile.finance-details.salary-details.SelectSalaryType'|translate}}
+                                                    </option>
+                                                    <option *ngFor="let item of SalaryTypes"
+                                                        [selected]="item.id == salary.salaryType" [value]="item.id">
+                                                        {{ item.salaryTypeName}}
+                                                    </option>
+                                                </ng-container>
+                                                <!-- [selected]="item.id == salary.salaryType" -->
+                                            </select>
+                                        </option>
+                                    </ng-container></select>
+
+                            </div>
+
+                            <div>
+                                <label
+                                    for="Transaction">{{'i18n.employeeProfile.finance-details.salary-details.TransactionType'|translate}}</label>
+                                <select name="Transaction Type" (change)="onTransactionSelect($event)">
+                                    <ng-container>
+                                        <option selected>Select Transaction Type</option>
+                                       <label for="Transaction">{{'i18n.employeeProfile.finance-details.salary-details.TransactionType'|translate}}</label>
+                                        <select name="Transaction Type" (change)="onTransactionSelect($event)">
+                                            <ng-container>
+                                                <option selected>
+                                                    {{'i18n.employeeProfile.finance-details.salary-details.SelectTransactionType'|translate}}
+                                                </option>
+
+                                                <option *ngFor="let itemm of Transactions"
+                                                    [selected]="itemm.id == salary.transactionType" [value]="itemm.id">
+                                                    {{ itemm.transaction ? 'debit' : 'credit'}}
+                                                </option>
+                                            </ng-container>
+                                            <!-- [selected]="item.id == salary.salaryType" -->
+                                        </select></ng-container></select>
+                            </div>
+
+
+                            <div>
+                                <label
+                                    for="currency-short-word">{{'i18n.employeeProfile.finance-details.salary-details.Amount'|translate}}</label>
+                                <input type="text" id="Amount" placeholder="Amount" [(ngModel)]="salary.amount"
+                                    name="Amount" required />
+                            </div>
+
+                            <!-- <div>
+                                <label for="Category">Currency</label>
+                                <select [(ngModel)]="salary.currency" name="Currency"
+                                    (change)="onCurrencySelect($event)" aria-placeholder="Currency"  >
+                                   
+                                    <ng-container *ngFor="let items of currency">
+                                        <option [selected]="items.id == salary.currency" [value]="items.id" >
+                                            {{ items.shortWord}}
+                                        </option>
+                                    </ng-container>
+                                </select>
+                            </div> -->
+
+                            <div *ngIf="showCurrencyDropdown">
+                                <label
+                                    for="Currency">{{'i18n.employeeProfile.finance-details.salary-details.Currency'|translate}}</label>
+                                <select [(ngModel)]="salary.currency" name="Currency"
+                                    (change)="onCurrencySelect($event)" aria-placeholder="Currency">
+                                    <!-- <option value="" selected>Select Currency</option> -->
+
+                                    <option *ngFor="let item of currency" [value]="item.id">{{ item.shortWord }}
+                                    </option>
+                                </select>
+                            </div>
+
+
+                            <div *ngIf="!showCurrencyDropdown">
+                                <label
+                                    for="Currency">{{'i18n.employeeProfile.finance-details.salary-details.Currency'|translate}}</label>
+                                <select [(ngModel)]="salary.currency" name="Currency"
+                                    (change)="onCurrencySelect($event)" aria-placeholder="Currency" disabled>
+
+                                    <option *ngFor="let item of currency" [value]="item.id">{{ item.shortWord }}
+                                    </option>
+                                </select>
+                            </div>
+                            <!-- <div *ngIf="!showCurrencyDropdown">
+                                <label for="Currency">Currency</label>
+                                <input type="text" [(ngModel)]="salary.currency" [value]="salary.currency" name="Currency" readonly>
+                            </div> -->
+                            <div>
+                                <label
+                                    for="StartDate">{{'i18n.employeeProfile.finance-details.salary-details.StartDate'|translate}}</label>
+                                <input type="date" id="StartDate" [(ngModel)]="salary.salaryStartDate" name="StartDate"
+                                    placeholder="StartDate" required
+                                    max="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}" />
+                            </div>
+                            <div>
+                                <label
+                                    for="EndDate">{{'i18n.employeeProfile.finance-details.salary-details.EndDate'|translate}}</label>
+                                <input type="date" id="EndDate" [(ngModel)]="salary.salaryEndDate" name="EndDate"
+                                    placeholder="EndDate" required min="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}" />
+                            </div>
+                        </div>
+                        <!-- <input class="ml_25" type="submit" value="Add" *ngIf="this.hasPermission('employeeprofile.Salary.Add')" > -->
+                        <input type="submit" class="btn btn-primary ml-25 mb-20"
+                            value="{{ 'i18n.Common.Add' | translate }}"
+                            *ngIf="!salary.id && this.hasPermission('employeeprofile.Salary.Add')" />
+                        <input type="submit" class="btn btn-primary ml-25 mb-20"
+                            value="{{ 'i18n.Common.Update' | translate }}"
+                            *ngIf="salary.id && this.hasPermission('employeeprofile.Salary.Add')" />
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="right__part">
+    <div class="cont cont2_1">
+        <div class="common_form">
+            <div class="common_title">
+                <h2 class="h2 mb-0">
+                    {{'i18n.employeeProfile.finance-details.salary-details.SalaryOverview'|translate}}
+                </h2>
+            </div>
+            <div class="table_space">
+                <div class="table_scroll no_scroll">
+                    <app-beon-grid [showEditButton]="hasPermission('employeeprofile.Salary.Edit')"
+                        [showDeleteButton]="hasPermission('employeeprofile.Salary.Delete')"
+                        [dataRowSource]="dataRowSource" [columnDefs]="columnDefs" (onEdit)="onEditClick($event)"
+                        (onDelete)="onDeleteClick($event)" [totalPages]="totalPages" [totalItems]="totalItems">
+                    </app-beon-grid>
+                </div>
+            </div>
+
+            <div class="modal fade" tabindex="-1" aria-labelledby="AddEditModalToggleLabel" #addEditModal
+                id="AddEditModalToggle" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered custom-modal-width">
+                    <div class="form-box modal-content">
+                        <div class="popup">
+                            <div class="popup-title">
+                                <h3 *ngIf="salary.id">
+                                    {{
+                                    "i18n.configuration.manageCountryDetails.editCountry"
+                                    | translate
+                                    }}
+                                </h3>
+
+
+                            </div>
+                            <div>
+                                <button type="button" #closeButton class="btn-close btn-close-white"
+                                    (click)="closeModal()" data-bs-dismiss="modal"></button>
+                            </div>
+                            <!-- (click)="onRemoveClick()" aria-label="Close" -->
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="Modal" *ngIf="showDeleteModal">
+                <div class="Modal-content">
+                    <div class="Modal-header">
+                        <h2 class="fnt-color"><strong>{{ 'i18n.Common.DeleteConfirmation' | translate }} </strong></h2>
+                    </div>
+                    <div class="Modal-body">
+                        <span style="color: black">
+                            {{ 'i18n.Common.SureDelete' | translate }}
+                            <span> {{ deleteSalary }} ?</span>
+                        </span>
+                    </div>
+                    <div class="Modal-footer">
+                        <button type="button" class="btn btn-secondary me-2" (click)="cancelDelete()"
+                            data-dismiss="modal">
+                            {{ 'i18n.Common.Cancel' | translate }}
+                        </button>
+                        <button type="button" class="btn btn-danger" (click)="deleteItem()">
+                            {{ 'i18n.Common.Delete' | translate }}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="right__part">
+
+    <div class="cont cont2_1">
+        <div class="common_form">
+
+            <!-- <app-payment-last-month></app-payment-last-month> -->
+            <div class="common_title">
+                <h2 class="h2 mb-0">
+                    <!-- {{'i18n.employeeProfile.finance-details.salary-details.PaymentLastMonth'|translate}} -->
+                    {{ lastMonthTitle }}
+                </h2>
+            </div>
+            <div class="table_space">
+                <div class="table_scroll no_scroll">
+                    <app-beon-grid [dataRowSource]="dataRowSourceLastMonth" [columnDefs]="columnDefsLastMonth">
+                    </app-beon-grid>
+                </div>
+            </div>
+        </div>
+
+        <div class="common_form">
+
+            <!-- <app-payment-later-last-month></app-payment-later-last-month> -->
+
+            <div class="common_title">
+                <h2 class="h2 mb-0">
+                    <!-- {{'i18n.employeeProfile.finance-details.salary-details.PaymentLaterLastMonth'|translate}} -->
+                    {{laterLastMonthTitle}}
+                </h2>
+            </div>
+            <div class="table_space">
+                <div class=" no_scroll">
+                    <app-beon-grid [dataRowSource]="dataRowSourceLaterLM" [columnDefs]="columnDefsLaterLM">
+                    </app-beon-grid>
+                </div>
+            </div>
+        </div>
+    </div>

@@ -1,0 +1,44 @@
+<!-- <div class="header">
+    <p>{{ 'i18n.configuration.manageCurrency' | translate }}</p>
+    <button class="btn_add" data-bs-toggle="modal" href="#AddEditModalToggle" role="button"> Add </button>
+</div>
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered custom-modal-width">
+        <div class="form-box modal-content">
+            <div class="popup">
+                <div class="popup-title">
+                    <h3>{{'i18n.configuration.manageCurrencyDetails.addcurrency'|translate}}</h3>
+                </div>
+                <div>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal"
+                        style="color: white;"></button>
+                </div>
+            </div>
+            <form>
+                <div class="form-fields three-column popup-forms">
+                    <div>
+                        <label for="country">{{'i18n.configuration.manageCurrencyDetails.country'| translate}}</label>
+                        <div class="select-wrapper">
+                            <select id="country" name="country" [(ngModel)]="selectedCountryId">
+                                <option *ngFor="let country of country" [value]="country.id">{{ country.name }}</option>
+                              </select>
+                              <div class="select-arrow"><i class="bi bi-chevron-down"></i></div>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="currency-short-word">{{'i18n.configuration.manageCurrencyDetails.currencyshortword'| translate}}</label>
+                        <input type="text" id="currency-short-word" name="currency-short-word" [(ngModel)]="shortWord"
+                            placeholder="Currency Short Word">
+                    </div>
+                    <div>
+                        <label for="currency-symbol">{{'i18n.configuration.manageCurrencyDetails.currencysymbol'| translate}}</label>
+                        <input type="text" id="currency-symbol" name="currency-symbol" [(ngModel)]="symbol"
+                            placeholder="Currency Symbol">
+                    </div>
+                </div>
+
+            </form>
+            <input type="submit" class="btn btn-primary ml-25" value="Add" (click)="addCurrency()">
+        </div>
+    </div>
+</div> -->

@@ -1,0 +1,41 @@
+<div class="right__part">
+    <div class="cont cont1_1">
+        <div class="common_form">
+            <div class="common_title">
+                <h2 class="h2 mb-0">{{'i18n.employeeProfile.finance-details.consultant-Rate'|translate}}</h2>
+            </div>
+            <div>
+                <div class="form-box">
+                    <form (ngSubmit)="SaveConsultantRate()">
+                        <div class="form-fields popup-forms">
+                            <!-- Currency Drop Down -->
+ 
+                            <div>
+                                <label
+                                    for="Currency">{{'i18n.employeeProfile.finance-details.salary-details.Currency'|translate}}</label>
+                                <select [(ngModel)]="consultantRate.Currency" name="Currency"
+                                    (change)="onCurrencySelect($event)" aria-placeholder="Currency">
+
+                                    <option *ngFor="let item of currency" [value]="item.id">{{ item.shortWord }}
+                                    </option>
+                                </select>
+                            </div>
+                            <!-- Price per Day net -->
+                            <div>
+                                <label for="leaveType">{{'i18n.employeeProfile.finance-details.consultant-RateDetails.PriceperDaynet'|translate}}</label>
+                                <input type="text" id="PriceperDaynet" name="PriceperDaynet" [(ngModel)]="consultantRate.PriceperDaynet" placeholder="{{'i18n.employeeProfile.finance-details.consultant-RateDetails.0.0'|translate}}" required />
+                            </div>
+                            <!-- Price per Hour net -->
+                            <div>
+                                <label for="leaveType">{{'i18n.employeeProfile.finance-details.consultant-RateDetails.PriceperHournet'|translate}}</label>
+                                <input type="text" id="PriceperHournet" name="PriceperHournet" [(ngModel)]="consultantRate.PriceperHournet" placeholder="{{'i18n.employeeProfile.finance-details.consultant-RateDetails.0.0'|translate}}" required />
+                            </div>
+                        </div>
+                        <input class="ml_25" type="submit" value="{{'i18n.employeeProfile.finance-details.consultant-RateDetails.Add'|translate}}">
+                    </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

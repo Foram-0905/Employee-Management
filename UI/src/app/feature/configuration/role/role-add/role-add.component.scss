@@ -1,0 +1,51 @@
+@import '../../../../styles/layout/popup';
+
+
+.form-fields {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 25px;
+    background-color: $White;
+    padding: 20px;
+  }
+
+  input[type="text"],input[type="date"] {
+    border: none;
+    color: $Black;
+    font-size: 14px;
+    height: 50px;
+    font-weight: 400;
+    width: 50%;
+    background: $input-bg-color;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px #7777772e;
+    padding: 15px;
+
+    &:focus {
+      outline: none;
+      background: $White;
+    }
+  }
+  #description{
+    border: none;
+    color: $Black;
+    resize: none;
+     overflow: hidden;
+    font-size: 14px;
+    height: 120px;
+    /* Adjust the height as needed */
+    font-weight: 400;
+    width: 50%;
+    background: $input-bg-color;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px #7777772e;
+    padding: 15px;
+    resize: none;
+    /* Disable textarea resizing */
+
+    &:focus {
+        outline: none;
+        background: $White;
+    }
+}

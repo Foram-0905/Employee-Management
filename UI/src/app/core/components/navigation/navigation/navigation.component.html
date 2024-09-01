@@ -1,0 +1,96 @@
+<!-- sidebar.component.html -->
+<div class="sidebar" [ngClass]="{'collapsed': isCollapsed}">
+  <div class="logo" [ngStyle]="{'width': isCollapsed ? '0' : 'auto'}">
+    <!-- Your logo image -->
+    <img  alt="Logo">
+    <!-- src="assets/image/logo.svg" -->
+    <button class="collapse-btn" mat-icon-button (click)="toggleCollapse()">
+      <mat-icon>menu</mat-icon>
+      <!-- <img src="assets/image/menu.svg" alt="menu"> -->
+    </button>
+  </div>
+  <ul class="sidebar-menu" (mouseenter)="opensidebarhover()" (mouseleave)=" closesidebarhover()"
+    routerLinkActive="active">
+    <li #menuItem [class.active]="isActive('/dashboard')">
+
+      <a routerLink="/dashboard" class="hoverable">
+        <!-- Home icon image -->
+        <img src="assets/image/home.svg" alt="Home">
+        <span *ngIf="!isCollapsed">{{'i18n.navigation.home'| translate}}</span>
+      </a>
+    </li>
+    <li #menuItem [class.active]="isActive('/employees/employelist')" *ngIf="this.hasPermission('employeelist.View')">
+      <a routerLink="/employees/employelist" class="hoverable">
+        <!-- Employee List icon image -->
+        <img src="assets/image/package.svg" alt="Employee List">
+        <span *ngIf="!isCollapsed">{{'i18n.navigation.employeeList'| translate}}</span>
+      </a>
+    </li>
+    <li #menuItem [class.active]="isActive('/employee/employeeprofile')" *ngIf="this.hasPermission('employeeprofile.personal.View')">
+      <a routerLink="/employee/employeeprofile" class="hoverable">
+        <!-- Employee Profile icon image -->
+        <img src="assets/image/profile.svg" alt="Employee Profile">
+        <span *ngIf="!isCollapsed">{{'i18n.navigation.employeeProfile'| translate}}</span>
+      </a>
+    </li>
+    <li #menuItem [class.active]="isActive('/employee/orgchart')"  *ngIf="this.hasPermission('organisationalchart.View')">
+      <a routerLink="/employee/orgchart" class="hoverable" routerLinkActive="active">
+        <!-- Organizational Chart icon image -->
+        <img src="assets/image/chart.svg" alt="Organizational Chart">
+        <span *ngIf="!isCollapsed">{{'i18n.navigation.organisationalChart'| translate}}</span>
+      </a>
+    </li>
+    <li #menuItem [class.active]="isActive('/employee/leave')" *ngIf="this.hasPermission('Leave.leavedetails.View')">
+      <a routerLink="/employee/leave" class="hoverable" routerLinkActive="active">
+        <!-- Leave icon image -->
+        <img src="assets/image/leave.svg" alt="Leave">
+        <span *ngIf="!isCollapsed">{{ 'i18n.navigation.leave' | translate }}</span>
+      </a>
+    </li>
+    <li>
+      <a routerLink="" class="hoverable" >
+        <img src="assets/image/config.svg" alt="Configuration">
+        <span *ngIf="!isCollapsed">{{'i18n.navigation.configuration'|translate}}</span>
+      </a>
+    </li>
+    <ul class="sub_ul" (ngClass)="{'hover-active': !isCollapsed}" routerLinkActive="active">
+      <li #menuItem [class.active]="isActive('/configuration/slg')" *ngIf="this.hasPermission('configuration.slggroup.View')"><a routerLink="/configuration/slg"
+          class="hoverable">{{'i18n.configuration.slgGroup'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/designation')" *ngIf="this.hasPermission('configuration.designation.View')"><a routerLink="/configuration/designation"
+          class="hoverable">{{'i18n.configuration.designation'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/role')" *ngIf="this.hasPermission('configuration.role.View')"><a routerLink="/configuration/role"
+          class="hoverable">{{'i18n.configuration.manageRole'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/managepermission')" *ngIf="this.hasPermission('configuration.permission.View')"><a
+          routerLink="/configuration/managepermission"
+          class="hoverable">{{'i18n.configuration.managePermission'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/manageleave')" *ngIf="this.hasPermission('configuration.manageleave.View')"><a routerLink="/configuration/manageleave"
+          class="hoverable">{{'i18n.configuration.manageLeave'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/leavecategory')" *ngIf="this.hasPermission('configuration.leavecategory.View')"><a
+          routerLink="/configuration/leavecategory"
+          class="hoverable">{{'i18n.configuration.leaveCategory'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/leavetype')" *ngIf="this.hasPermission('configuration.leavetype.View')"><a routerLink="/configuration/leavetype"
+          class="hoverable">{{'i18n.configuration.leaveType'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/publicholiday')" *ngIf="this.hasPermission('configuration.managepublicholidays.View')"><a
+          routerLink="/configuration/publicholiday"
+          class="hoverable">{{'i18n.configuration.managePublicHoliday'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/assets')"  *ngIf="this.hasPermission('configuration.manageasset.View')"><a routerLink="/configuration/assets"
+          class="hoverable">{{'i18n.configuration.manageAsset'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/educationlevel')" *ngIf="this.hasPermission('cconfiguration.educationlevel.View')"><a
+          routerLink="/configuration/educationlevel"
+          class="hoverable">{{'i18n.configuration.educationLevel'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/languagelevel')" *ngIf="this.hasPermission('configuration.languagelevel.View')"><a routerLink="/configuration/languagelevel"
+          class="hoverable">{{'i18n.configuration.languageLevel'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/currency')" *ngIf="this.hasPermission('configuration.managecurrency.View')"><a routerLink="/configuration/currency"
+          class="hoverable">{{'i18n.configuration.manageCurrency'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/country')" *ngIf="this.hasPermission('configuration.managecountry.View')"><a routerLink="/configuration/country"
+          class="hoverable">{{'i18n.configuration.manageCountry'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/sateregion')" *ngIf="this.hasPermission('configuration.stateregion.View')"><a routerLink="/configuration/sateregion"
+          class="hoverable">{{'i18n.configuration.stateRegion'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/city')" *ngIf="this.hasPermission('configuration.managecity.View')"><a routerLink="/configuration/city"
+          class="hoverable">{{'i18n.configuration.manageCity'|translate}}</a></li>
+      <li #menuItem [class.active]="isActive('/configuration/useractivelog')" *ngIf="this.hasPermission('Leave.userManagement.View')"><a
+          routerLink="/configuration/useractivelog"
+          class="hoverable">{{'i18n.configuration.userActiveLog'|translate}}</a></li>
+    </ul>
+  </ul>
+</div>

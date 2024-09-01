@@ -1,0 +1,140 @@
+<div class="common_form">
+  <div class="common_title">
+    <h2 class="h2 mb-0">
+      {{ 'i18n.configuration.manageCity' | translate }}
+    </h2>
+    <button #addBtn id="openModalButton" class="btn btn-primary" data-bs-toggle="modal"
+      data-bs-target="#AddEditModalToggle" role="button" *ngIf="hasPermission('configuration.managecity.Add')">
+      {{ "i18n.Common.Add" | translate }}
+    </button>
+  </div>
+
+  <div class="search_count">
+    <div class="search_right">
+      <form (ngSubmit)="commonSearchWithinGrid()" (input)="onSearchInput($event)" class="reset">
+        <input type="search" [placeholder]="'i18n.Common.Search' | translate" name="commonSearchText"
+          [(ngModel)]="searchText" />
+        <input type="submit" value="Search" />
+      </form>
+    </div>
+  </div>
+  <div class="table_space">
+    <div class="table_scroll">
+      <app-beon-grid *ngIf="columnDefs.length > 0" [showEditButton]="hasPermission('configuration.managecity.Edit')"
+        [showDeleteButton]="hasPermission('configuration.managecity.Delete')" [dataRowSource]="dataRowSource"
+        [columnDefs]="columnDefs" (onEdit)="onEditClick($event)" (onDelete)="onDeleteClick($event)"
+        [totalPages]="totalPages" [totalItems]="totalItems" (getDataRowsourse)="getDataRowsourse($event)"
+        (ongridReady)="gridReady($event)"></app-beon-grid>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" tabindex="-1" aria-labelledby="AddEditModalToggleLabel" #addEditModal id="AddEditModalToggle"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered custom-modal-width">
+    <div class="form-box modal-content">
+      <div class="popup">
+        <div class="popup-title">
+          <h3 *ngIf="cities.id">
+            {{
+            "i18n.configuration.manageCityDetails.editcity"
+            | translate
+            }}
+          </h3>
+          <h3 *ngIf="!cities.id">
+            {{
+            "i18n.configuration.manageCityDetails.addcity" | translate
+            }}
+          </h3>
+        </div>
+        <div>
+          <button type="button" #closeButton (click)="closeModal()" class="btn-close btn-close-white"
+            data-bs-dismiss="modal"></button>
+        </div>
+      </div>
+      <form (ngSubmit)="SaveCity()" #cityForm="ngForm">
+        <div class="form-fields three-column popup-forms">
+          <div>
+            <label for="country">{{
+              "i18n.configuration.manageCityDetails.country"
+              | translate
+              }}</label>
+            <select [(ngModel)]="cities.countryId" name="countryName" (change)="onSelect($event)"
+              aria-placeholder="Select Country">
+              <ng-container *ngFor="let item of country">
+                <option [selected]="item.id == cities.countryId" [value]="item.id">
+                  {{ item.countryName }}
+                </option>
+              </ng-container>
+            </select>
+
+         <!-- <ng-select  class="ng-selects" [(ngModel)]="cities.countryId" name="Country" (ngModelChange)="onSelect($event)"
+                                aria-placeholder="Select Country">
+                                    <ng-option *ngFor="let item of country"  [value]="item.id">
+                                      {{item.countryName}}
+                                    </ng-option>
+                                  </ng-select> -->
+          </div>
+          <div>
+            <label for="stateName">{{
+              "i18n.configuration.manageCityDetails.statename"
+              | translate
+              }}</label>
+            <select [(ngModel)]="cities.state" name="stateName" (change)="onStateSelect($event)"
+              aria-placeholder="Select State">
+              <ng-container *ngFor="let item of filteredStates">
+                <option [selected]="item.id == cities.state" [value]="item.id">
+                  {{ item.name }}
+                </option>
+              </ng-container>
+            </select>
+            
+            <!-- <ng-select class="ng-selects" [(ngModel)]="cities.state" name="State" (ngModelChange)="onStateSelect($event)" aria-placeholder="Select State">
+              <ng-option *ngFor="let state of filteredStates" [value]="state.id">
+                {{state.name}}
+              </ng-option>
+            </ng-select> -->
+          </div>
+        </div>
+        <div class="form-fields three-column popup-forms">
+          <div>
+            <label for="city-name">{{
+              "i18n.configuration.manageCityDetails.cityname" | translate
+              }}</label>
+
+            <input type="text" id="cityName" name="cityName" [(ngModel)]="cities.name" placeholder="{{
+                'i18n.configuration.manageCityDetails.cityname' | translate
+              }}" required />
+          </div>
+        </div>
+        <input type="submit" class="btn btn-primary ml-25 mb-20" value="{{ 'i18n.Common.Update' | translate }}"
+          *ngIf="cities.id" />
+        <input type="submit" class="btn btn-primary ml-25 mb-20" value="{{ 'i18n.Common.Add' | translate }}"
+          *ngIf="!cities.id" />
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- DELETE MODEL -->
+<div class="Modal" *ngIf="showDeleteModal">
+  <div class="Modal-content">
+    <div class="Modal-header">
+      <h2 class="fnt-color"><strong>{{ 'i18n.Common.DeleteConfirmation' | translate }}</strong></h2>
+    </div>
+    <div class="Modal-body">
+      <span style="color: black">
+        {{ 'i18n.Common.SureDelete' | translate }}
+        <span> {{DeleteCity}} </span>
+      </span>
+    </div>
+    <div class="Modal-footer">
+      <button type="button" class="btn btn-secondary me-2" (click)="cancelDelete()" data-dismiss="modal">
+        {{ 'i18n.Common.Cancel' | translate }}
+      </button>
+      <button type="button" class="btn btn-danger" (click)="deleteItem()">
+        {{ 'i18n.Common.Delete' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

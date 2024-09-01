@@ -1,0 +1,93 @@
+<!-- <div class="right__part">
+    <div class="cont cont1_2">
+        <div class="common_form">
+            <div class="common_title">
+                <h2 class="h2">Contact & Home Adress</h2>
+            </div>
+ 
+            <div class="form_fields four_fields ">
+                <form (ngSubmit)="SaveContactAddress()" #Form="ngForm">
+                    <div class="form-fields three-column popup-forms">
+                        <div>
+                            <label for="street-name">Street</label>
+
+                            <input type="text" id="Streetname" name="Streetname" [(ngModel)]="contactaddress.street"
+                                placeholder="Enter street name" required />
+                        </div>
+
+                        <div>
+                            <label for="ZipCode">ZipCode</label>
+
+                            <input type="text" id="ZipCode" name="ZipCode" [(ngModel)]="contactaddress.zipCode"
+                                placeholder="Enter ZipCode" required />
+                        </div>
+                    
+                        <div>
+                            <label for="Country">Country </label>
+                            <select [(ngModel)]="contactaddress.state" name="Country" (change)="onSelect($event)"
+                                aria-placeholder="Select Country">
+                                <ng-container *ngFor="let item of country">
+                                    <option [selected]="item.id == contactaddress.country" [value]="item.id">
+                                        {{ item.countryName}}
+                                    </option>
+                                </ng-container>
+                            </select>
+                        </div>
+                        <div>
+                            <label for="state">state </label>
+                            <select [(ngModel)]="contactaddress.state" name="Fedralstate" (change)="onStateSelect($event)">
+                                <ng-container *ngFor="let item of filteredStates">
+                                    <option [selected]="item.id == contactaddress.state" [value]="item.id">
+                                        {{ item.name}}
+                                    </option>
+                                </ng-container>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="City">City</label>
+                            <select [(ngModel)]="contactaddress.city" name="city" aria-placeholder="Select City">
+                                <option *ngFor="let city of filteredCity" [value]="city.id">{{ city.name }}</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="PhoneNumber1">PhoneNumber1</label>
+
+                            <input type="text" id="PhoneNumber1" name="PhoneNumber1" [(ngModel)]="contactaddress.phone1"
+                                placeholder="Enter PhoneNumber1" required />
+                        </div>
+
+                        <div>
+                            <label for="PhoneNumber2">PhoneNumber2</label>
+
+                            <input type="text" id="PhoneNumber2" name="PhoneNumber12" [(ngModel)]="contactaddress.phone2"
+                                placeholder="Enter PhoneNumber2" required />
+                        </div>
+                        <div>
+                            <label for="emailbeON">emailbeON</label>
+                            <input type="text" id="emailbeON" name="emailbeON" [(ngModel)]="contactaddress.emailbeON"
+                                placeholder="Enter emailbeON" required />
+                        </div>
+
+                        <div>
+                            <label for="emailPrivate">emailPrivate</label>
+                            <input type="text" id="emailPrivate" name="emailPrivate" [(ngModel)]="contactaddress.emailPrivate"
+                                placeholder="Enter emailPrivate" required />
+                        </div>
+
+                        <label style="color: white;">x </label>
+                        <div class="check_box_group permission_grp">
+                            <div class="form-group">
+                                <input type="checkbox" id="room">
+                                <label for="room"> Flat/room entitlement</label>
+                            </div>
+                        </div> 
+                    </div>
+                    <input type="submit" class="btn btn-primary ml-25 mb-20" value="add" *ngIf="contactaddress.id" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div> -->
+

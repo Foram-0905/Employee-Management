@@ -1,0 +1,114 @@
+<div class="common_title">
+  <h2 class="h2 mb-0">
+    {{
+      "i18n.configuration.slgGroupDetails.manageinitialslgstatusgroup"
+        | translate
+    }}
+  </h2>
+  <button
+    class="btn btn-primary"
+    data-bs-toggle="modal"
+    data-bs-target="#AddEditModalToggle"
+    role="button"
+  >
+    {{ "i18n.configuration.slgGroupDetails.add" | translate }}
+  </button>
+</div>
+<div class="modal fade" id="exampleModalToggle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered custom-modal-width">
+    <div class="form-box modal-content">
+      <div class="popup">
+        <div class="popup-title">
+          <h3>
+            {{
+              "i18n.configuration.slgGroupDetails.addinitialslgstatusgroup"
+                | translate
+            }}
+          </h3>
+        </div>
+        <div>
+          <button
+            type="button"
+            #closeButton
+            class="btn-close btn-close-white"
+            data-bs-dismiss="modal"
+          ></button>
+        </div>
+      </div>
+      <form (ngSubmit)="SaveSLGgroup()">
+        <div class="form-fields three-column popup-forms">
+          <div>
+            <label for="initial-slg-status">{{
+              "i18n.configuration.slgGroupDetails.initialslgstatus" | translate
+            }}</label>
+            <input
+              type="text"
+              id="initial-slg-status"
+              name="initialStatus"
+              [(ngModel)]="slgGroups.initialStatus"
+              placeholder="{{
+                'i18n.configuration.slgGroupDetails.initialslgstatus'
+                  | translate
+              }}"
+              required
+            />
+          </div>
+          <div>
+            <label for="slg-status-display">{{
+              "i18n.configuration.slgGroupDetails.slgstatusdisplayname"
+                | translate
+            }}</label>
+            <input
+              type="text"
+              id="slg-status-display"
+              name="statusName"
+              [(ngModel)]="slgGroups.statusName"
+              placeholder="{{
+                'i18n.configuration.slgGroupDetails.slgstatusdisplayname'
+                  | translate
+              }}"
+              required
+            />
+          </div>
+          <div>
+            <label for="display-sequence">{{
+              "i18n.configuration.slgGroupDetails.displaysequence" | translate
+            }}</label>
+            <input
+              type="number"
+              id="display-sequence"
+              name="statusSequence"
+              [(ngModel)]="slgGroups.statusSequence"
+              placeholder="{{
+                'i18n.configuration.slgGroupDetails.displaysequence' | translate
+              }}"
+              required
+            />
+          </div>
+          <div>
+            <label for="relevant-work-experience">{{
+              "i18n.configuration.slgGroupDetails.relevantworkexperience"
+                | translate
+            }}</label>
+            <input
+              type="text"
+              id="relevant-work-experience"
+              name="relevantExperience"
+              [(ngModel)]="slgGroups.relevantExperience"
+              placeholder="{{
+                'i18n.configuration.slgGroupDetails.relevantworkexperience'
+                  | translate
+              }}"
+              required
+            />
+          </div>
+        </div>
+        <input
+          type="submit"
+          class="btn btn-primary ml-25 mb-20"
+          value="{{ 'i18n.configuration.slgGroupDetails.add' | translate }}"
+        />
+      </form>
+    </div>
+  </div>
+</div>

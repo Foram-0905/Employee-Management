@@ -1,0 +1,40 @@
+<div class="common_form">
+  <div class="common_title">
+    <h2 class="h2 mb-0">
+      {{ "i18n.leave.employeeLeaveBalance.pendingforApproval" | translate }}
+    </h2>
+  </div>
+ 
+  <div class="table_space p-4 h-50">
+    <ng-container *ngIf="activeTab == 'employeeLeaveBalance'">
+      <div class="table_scroll">
+        <app-beon-grid
+          [showEditButton]="false"
+          [showRejectButton]="false"
+          [dataRowSource]="employeePendingLeaves"
+          [columnDefs]="columnDefsforEmployee"
+          [totalPages]="totalPages" [totalItems]="totalItems"
+          [showEditButton]="showEdit" [showDeleteButton]="hasPermission('Leave.EmployeeLeave.Delete')"
+          (onEdit)="onEditClick($event)" (onDelete)="onDeleteClick($event)"[totalPages]="totalPages" [totalItems]="totalItems"
+          (getDataRowsourse)="getDataRowsourse($event)"
+          (ongridReady)="gridReady($event)"
+        ></app-beon-grid>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="activeTab == 'officeManagementBalance'">
+      <div class="table_scroll">
+        <app-beon-grid
+          [showApproveButton]="true"
+          [showRejectButton]="true"
+          [dataRowSource]="employeePendingLeaves"
+          [columnDefs]="columnDefsforOffice"
+          (onRejectClick)="onReject($event)"
+          [totalPages]="totalPages" [totalItems]="totalItems"
+          (onApproveClick)="onApprove($event)"[totalPages]="totalPages" [totalItems]="totalItems"
+          (getDataRowsourse)="getDataRowsourse($event)"
+          (ongridReady)="gridReady($event)"
+        ></app-beon-grid>
+      </div>
+    </ng-container>
+  </div>
+</div>

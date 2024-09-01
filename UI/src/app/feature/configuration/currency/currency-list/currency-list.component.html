@@ -1,0 +1,134 @@
+<div class="common_form">
+  <div class="common_title">
+    <h2 class="h2 mb-0">
+      {{ "i18n.configuration.manageCurrency" | translate }}
+    </h2>
+    <button #addBtn id="openModalButton" class="btn btn-primary" data-bs-toggle="modal"
+      data-bs-target="#AddEditModalToggle" role="button" *ngIf="hasPermission('configuration.managecurrency.Add')">
+      {{ "i18n.Common.Add" | translate }}
+    </button>
+  </div>
+
+  <div class="search_count">
+    <div class="search_right">
+      <form (ngSubmit)="commonSearchWithinGrid()" (input)="onSearchInput($event)" class="reset">
+        <input type="search" [placeholder]="'i18n.Common.Search' | translate" name="commonSearchText" [(ngModel)]="searchText" />
+        <input type="submit" value="Search" />
+      </form>
+    </div>
+  </div>
+
+  <div class="table_space">
+    <div class="table_scroll">
+      <app-beon-grid *ngIf="columnDefs.length > 0" [showEditButton]="hasPermission('configuration.managecurrency.Edit')"
+        [showDeleteButton]="hasPermission('configuration.managecurrency.Delete')" [dataRowSource]="dataRowSource"
+        [columnDefs]="columnDefs" (onEdit)="onEditClick($event)" (onDelete)="onDeleteClick($event)"
+        [totalPages]="totalPages" [totalItems]="totalItems" (getDataRowsourse)="getDataRowsourse($event)"
+        (ongridReady)="gridReady($event)"></app-beon-grid>
+    </div>
+  </div>
+
+  <div class="modal fade" tabindex="-1" aria-labelledby="AddEditModalToggleLabel" #addEditModal id="AddEditModalToggle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered custom-modal-width">
+      <div class="form-box modal-content">
+        <div class="popup">
+          <div class="popup-title">
+            <h3 *ngIf="currency.id">
+              {{
+              "i18n.configuration.manageCurrencyDetails.editcurrency"
+              | translate
+              }}
+            </h3>
+
+            <h3 *ngIf="!currency.id">
+              {{
+              "i18n.configuration.manageCurrencyDetails.addcurrency"
+              | translate
+              }}
+            </h3>
+          </div>
+          <div>
+            <button type="button" #closeButton (click)="closeModal()" class="btn-close btn-close-white"
+              data-bs-dismiss="modal"></button>
+          </div>
+          <!-- (click)="onRemoveClick()" aria-label="Close" -->
+        </div>
+        <form (ngSubmit)="addCurrency()">
+          <div class="form-fields three-column popup-forms">
+            <div>
+              <label for="country">{{
+                "i18n.configuration.manageCurrencyDetails.country" | translate
+                }}</label>
+              <select  name="country" (change)="onSelect($event)" aria-placeholder="Select Country">
+                <ng-container >
+                  <option selected>{{
+                    "i18n.configuration.manageCurrencyDetails.SelectCountry" | translate
+                    }}</option>
+                  <option *ngFor="let item of country" [selected]="item.id == currency.country" [value]="item.id">
+                    {{ item.countryName }}
+                  </option>
+                </ng-container>
+              </select>
+            </div>
+          </div>
+          <div class="form-fields three-column popup-forms">
+            <div>
+              <label for="currency-short-word">{{
+                "i18n.configuration.manageCurrencyDetails.currencyshortword"
+                | translate
+                }}</label>
+              <input type="text" id="currency-short-word" name="currency-short-word" [(ngModel)]="currency.shortWord"
+                placeholder="{{
+                  'i18n.configuration.manageCurrencyDetails.currencyshortword'
+                    | translate
+                }}" required />
+            </div>
+            <div>
+              <label for="currency-symbol">{{
+                "i18n.configuration.manageCurrencyDetails.currencysymbol"
+                | translate
+                }}</label>
+              <input type="text" id="currency-symbol" name="currency-symbol" [(ngModel)]="currency.symbol" placeholder="{{
+                  'i18n.configuration.manageCurrencyDetails.currencysymbol'
+                    | translate
+                }}" required />
+            </div>
+          </div>
+          <input type="submit" class="btn btn-primary ml-25 mb-20" value="{{ 'i18n.Common.Update' | translate }}"
+            *ngIf="currency.id" />
+          <input type="submit" class="btn btn-primary ml-25 mb-20" value="{{ 'i18n.Common.Add' | translate }}"
+            *ngIf="!currency.id" />
+          <!-- <input
+            type="submit"
+            class="btn btn-primary ml-25 mb-20"
+            [value]='Designation.id ? "{{'i18n.Common.Update' | translate}}":"{{'i18n.Common.Add' | translate}}"'
+          /> -->
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--Delete Modal -->
+<div class="Modal" *ngIf="showDeleteModal">
+  <div class="Modal-content">
+    <div class="Modal-header">
+      <h2 class="fnt-color"><strong>{{ 'i18n.Common.DeleteConfirmation' | translate }}</strong></h2>
+    </div>
+    <div class="Modal-body">
+      <span style="color: black">
+        {{ 'i18n.Common.SureDelete' | translate }}
+        <span> {{ DeleteCurrency }} ?</span>
+      </span>
+    </div>
+    <div class="Modal-footer">
+      <button type="button" class="btn btn-secondary me-2" (click)="cancelDelete()" data-dismiss="modal">
+        {{ 'i18n.Common.Cancel' | translate }}
+      </button>
+      <button type="button" class="btn btn-danger" (click)="deleteItem()">
+        {{ 'i18n.Common.Delete' | translate }}
+      </button>
+    </div>
+  </div>
+</div>

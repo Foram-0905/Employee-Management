@@ -1,0 +1,962 @@
+<div class="cont cont1_1">
+    <form (ngSubmit)="SaveEmployee()">
+        <div class="right__part">
+            <div class="cont cont1_1">
+                <div class="common_form">
+                    <div class="common_title">
+                        <h2 class="h2">{{"i18n.employeeProfile.personal-details.personalDetails.general"|translate}}
+                        </h2>
+                    </div>
+                    <div class="form_fields four_fields">
+                        <ul>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.employeenumber"|translate}}</label>
+                                <input type="number"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enteremployeenumber' | translate"
+                                    [(ngModel)]="Employeess.employeeNumber" name="employeeNumbers">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.currentemployeestatus"|translate}}</label>
+                                <select [(ngModel)]="Employeess.currentStatusId" name="currentStatus">
+                                    <ng-container>
+                                        <option *ngFor="let item of Countrydata" [selected]="item.id == Employeess.currentStatusId" [value]="item.id">
+                                            {{ item.countryName }}
+                                        </option>
+                                    </ng-container>
+                                </select>
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.employeetype"|translate}}</label>
+                                <select [(ngModel)]="Employeess.employementTypeId" name="employeeType">
+                                    <ng-container *ngFor="let item of EmploymentType">
+                                        <option [selected]="item.id == Employeess.employementTypeId" [value]="item.id">
+                                            {{ item.employmenttype }}
+                                        </option>
+                                    </ng-container>
+                                </select>
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.typeofemployeement"|translate}}</label>
+                                <select [(ngModel)]="Employeess.typeofEmploymentId" name="employmentType">
+                                    <ng-container *ngFor="let item of TypeofEmployment">
+                                        <option [selected]="item.id == Employeess.typeofEmploymentId" [value]="item.id">
+                                            {{ item.translationKey | translate }}
+                                        </option>
+                                    </ng-container>
+                                </select>
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.workinghours"|translate}}</label>
+                                <input type="text"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enterworkinghours' | translate"
+                                    name="WorkingHours" [(ngModel)]="Employeess.workingHours"
+                                    (input)="handleInputsMaxWord($event)">
+                            </li>
+
+
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.jobtitle"|translate}}</label>
+                                <input type="text"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enterjobtitle' | translate"
+                                    name="JobTitle" [(ngModel)]="Employeess.jobTitle"
+                                    (input)="handleInputMaxWithLetter($event)">
+                            </li>
+
+
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.contractualstartdate"|translate}}</label>
+                                <input type="date" placeholder="dd/mm/yyyy" id="txtDate"
+                                    [(ngModel)]="Employeess.contractualStartDate" name="contractualStartDate"
+                                    max="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.contractualenddate"|translate}}</label>
+                                <input type="date" placeholder="dd/mm/yyyy" id="txtDate"
+                                    [(ngModel)]="Employeess.contractualEndDate" name="contractualEndDate"
+                                    min="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}">
+                            </li>
+
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.employeeemail"|translate}}</label>
+                                <input type="text" placeholder="abc@companyname.com" [(ngModel)]="Employeess.email"
+                                    name="email" (blur)="validateEmail()">
+                                <div *ngIf="!isEmailValid" class="EmailError">
+                                    {{"i18n.employeeProfile.personal-details.personalDetails.validemail"|translate}}
+                                    (e.g.,abc&#64;companyname.com).
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="four_fields">
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.firstname"|translate}}</label>
+                                <input type="text"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enterfirstname' | translate"
+                                    [(ngModel)]="Employeess.firstName" name="firstName"
+                                    (input)="handleInputEmployeName($event)">
+                            </li>
+
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.middlename"|translate}}</label>
+                                <input type="text"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.entermiddlename' | translate"
+                                    [(ngModel)]="Employeess.middleName" name="middleName"
+                                    (input)="handleInputEmployeName($event)">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.lastname"|translate}}</label>
+                                <input type="text"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enterlastname' | translate"
+                                    [(ngModel)]="Employeess.lastName" name="lastName"
+                                    (input)="handleInputEmployeName($event)">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.gender"|translate}}</label>
+                                <select [(ngModel)]="Employeess.gender" name="gender">
+                                    <option>{{"i18n.employeeProfile.personal-details.personalDetails.female"|translate}}
+                                    </option>
+                                    <option>{{"i18n.employeeProfile.personal-details.personalDetails.male"|translate}}
+                                    </option>
+                                    <option>{{"i18n.employeeProfile.personal-details.personalDetails.other"|translate}}
+                                    </option>
+                                </select>
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.birthdate"|translate}}</label>
+                                <input type="date" placeholder="dd/mm/yyyy" [(ngModel)]="Employeess.birthdate"
+                                    name="birthdate" max="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.placeofbirthcity"|translate}}</label>
+                                <input type="text"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enterplaceofbirthcity' | translate"
+                                    [(ngModel)]="Employeess.birthCity" name="birthCity"
+                                    (input)="handleInputMaxWithLetter($event)">
+                            </li>
+
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.placeofbirthcountry"|translate}}</label>
+                                <!-- <input type="text" placeholder="Enter Place of Birth Country"
+                                    [(ngModel)]="Employeess.birthCountry" name="birthCountry"> -->
+                                <select placeholder="Enter Place of Birth Country"
+                                    [(ngModel)]="Employeess.birthCountryId" name="birthCountry">
+                                    <ng-container *ngFor="let item of Countrydata">
+                                        <option [selected]="item.id == Employeess.birthCountryId" [value]="item.id">
+                                            {{ item.countryName }}
+                                        </option>
+                                    </ng-container>
+                                </select>
+                            </li>
+
+
+
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.nationality"|translate}}</label>
+                                <input type="text"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enternationality' | translate"
+                                    [(ngModel)]="Employeess.nationality" name="nationality"
+                                    (input)="handleInputMaxWithLetter($event)">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.taxidnumber"|translate}}</label>
+                                <input type="text"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.entertaxid' | translate"
+                                    [(ngModel)]="Employeess.taxId" name="taxId" (input)="handleInputTaxMax($event)">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.socialsecuritynumber"|translate}}</label>
+                                <input type="text"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.entersocialsecuritynumber' | translate"
+                                    [(ngModel)]="Employeess.socialSecurity" name="socialSecurity"
+                                    (input)="handleInputTaxMax($event)">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.taxclass"|translate}}</label>
+                                <select [(ngModel)]="Employeess.taxClassId" name="taxClassId">
+                                    <ng-container *ngFor="let item of taxclass">
+                                        <option [selected]="item.id == Employeess.taxClassId" [value]="item.id">
+                                            {{ item.tax_Class }}
+                                        </option>
+                                    </ng-container>
+                                </select>
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.nameofhealthinsurance"|translate}}</label>
+                                <input type="text"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enterhealthinsurance' | translate"
+                                    [(ngModel)]="Employeess.healthInsaurance" name="healthInsurance"
+                                    (input)="handleInputMaxhealthInsaurance($event)">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.maritalstatus"|translate}}</label>
+                                <select [(ngModel)]="Employeess.maritalStatusId" name="maritalStatusId">
+                                    <ng-container *ngFor="let item of MaritalStatus">
+                                        <option [selected]="item.id == Employeess.maritalStatusId" [value]="item.id">
+                                            {{"i18n.employeeProfile.personal-details.personalDetails.martialstatusdetail."
+                                            + item.maritalstatus |translate}}
+                                            <!-- {{item.maritalstatus}} -->
+                                        </option>
+                                    </ng-container>
+                                </select>
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.religiousaffiliation"|translate}}</label>
+                                <input type="text"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enterreligiousaffiliation' | translate"
+                                    [(ngModel)]="Employeess.religiousaffiliation" name="religiousaffiliation"
+                                    (input)="handleInputMaxWithLetter($event)">
+                            </li>
+
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.profilephoto"|translate}}</label>
+                                <div>
+                                    <div *ngIf="imageUrl" class="profile_img">
+                                        <img [src]="imageUrl" alt="Uploaded Image">
+                                    </div>
+                                    <div *ngIf="!imageUrl">
+                                        <!-- Placeholder image or text when no image is uploaded -->
+
+                                    </div>
+
+                                    <div class='file-input profile-btn-margin'>
+                                        <input type='file' (change)="onFileSelectedProfile($event)">
+                                        <div class="file-name">{{ fileName }}</div>
+                                        <!-- <span class='label' data-js-label>{{"i18n.employeeProfile.personal-details.personalDetails.uploadFile"|translate}}</span> -->
+                                        <span class='button'><img src="assets/image/upload.svg" alt="cloud"></span>
+
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <label
+                                    for="test22">{{"i18n.employeeProfile.personal-details.personalDetails.personalsheet"|translate}}</label>
+                                <div class='file-input'>
+                                    <input type='file' (change)="onFileSelectedesPersonalsheet($event)">
+                                    <div class="file-name">{{ fileNamePersonalSheet }}</div>
+                                    <span *ngIf="!isFileSelectedPersonal" class='label'
+                                        data-js-label>{{"i18n.employeeProfile.personal-details.personalDetails.uploadDocumentpersonal"|translate}}</span>
+                                    <span class='button'><img src="assets/image/upload.svg" alt="cloud"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.SocialSecurityFile"|translate}}</label>
+                                <div class='file-input'>
+                                    <input type='file' (change)="onFileSelectedeSocialsecurityfile($event)">
+                                    <div class="file-name">{{ SSfileName }}</div>
+                                    <span *ngIf="!isFileSelectedSS" class='label'
+                                        data-js-label>{{"i18n.employeeProfile.personal-details.personalDetails.uploadDocumentssn"|translate}}</span>
+                                    <span class='button'><img src="assets/image/upload.svg" alt="cloud"></span>
+                                </div>
+                            </li>
+                            <!--<li class="profile_img">
+                                <label>Profile Photo</label>
+                                <img src="image/beautiful-beauty-blond-1587009.jpg">
+                            </li>-->
+
+
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.employeestatus"|translate}}</label>
+                                <select [(ngModel)]="Employeess.employeeStatusId" name="employeeStatus">
+                                    <ng-container *ngFor="let item of EmployeenStatus">
+                                        <option [selected]="item.id == Employeess.employeeStatusId" [value]="item.id">
+                                            {{"i18n.employeeProfile.personal-details.personalDetails.employeestatusdetails."
+                                            + item.employeenstatus |translate}}
+                                            <!-- {{ item.employeenstatus }} -->
+                                        </option>
+                                    </ng-container>
+                                </select>
+                            </li>
+
+                        </ul>
+                        <ul [formGroup]="LeaveType">
+                            <ng-container formGroupName="Annual">
+                                <li>
+                                    <label>{{"i18n.employeeProfile.personal-details.personalDetails.annualLeavetype" |
+                                        translate}}</label>
+                                    <select name="annualLeavetype" formControlName="leaveTypesEmployee">
+                                        <option value="6fa85f64-5717-4562-b3fc-2c963f66afa1">
+                                            {{"i18n.employeeProfile.personal-details.personalDetails.quota" |
+                                            translate}}</option>
+
+                                        <option value="6fa85f64-5717-4562-b3fc-2c963f66afa2">
+                                            {{"i18n.employeeProfile.personal-details.personalDetails.unlimited" |
+                                            translate}}</option>
+
+                                    </select>
+                                </li>
+                                <li *ngIf="!isUnlimitedAnnualLeaveType">
+                                    <label>{{"i18n.employeeProfile.personal-details.personalDetails.annualLeaveEntitlement"
+                                        | translate}}</label>
+                                    <input type="text"
+                                        [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enterannualLeaveEntitlement' | translate"
+                                        formControlName="leaveQuota" name="annualLeaveEntitlement">
+                                </li>
+                            </ng-container>
+
+                            <ng-container formGroupName="Sick">
+                                <li>
+                                    <label>{{"i18n.employeeProfile.personal-details.personalDetails.sickLeaveType" |
+                                        translate}}</label>
+                                    <select name="sickLeavetype" formControlName="leaveTypesEmployee">
+                                        <option value="6fa85f64-5717-4562-b3fc-2c963f66afa1">
+                                            {{"i18n.employeeProfile.personal-details.personalDetails.quota" |
+                                            translate}}</option>
+                                        <option value="6fa85f64-5717-4562-b3fc-2c963f66afa2">
+                                            {{"i18n.employeeProfile.personal-details.personalDetails.unlimited" |
+                                            translate}}</option>
+                                    </select>
+                                </li>
+                                <li *ngIf="!isUnlimitedSickLeaveType">
+                                    <label>{{"i18n.employeeProfile.personal-details.personalDetails.sickLeaveEntitlement"
+                                        | translate}}</label>
+                                    <input type="text"
+                                        [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.entersickLeaveEntitlement' | translate"
+                                        formControlName="leaveQuota" name="sickLeaveEntitlement">
+                                </li>
+                            </ng-container>
+
+                            <ng-container formGroupName="Special">
+                                <li>
+                                    <label>{{"i18n.employeeProfile.personal-details.personalDetails.specialLeaveType" |
+                                        translate}}</label>
+                                    <select name="specialLeavetype" formControlName="leaveTypesEmployee">
+                                        <option value="6fa85f64-5717-4562-b3fc-2c963f66afa1">
+                                            {{"i18n.employeeProfile.personal-details.personalDetails.quota" |
+                                            translate}}</option>
+                                        <option value="6fa85f64-5717-4562-b3fc-2c963f66afa2">
+                                            {{"i18n.employeeProfile.personal-details.personalDetails.unlimited" |
+                                            translate}}</option>
+
+
+                                    </select>
+                                </li>
+                                <li *ngIf="!isUnlimitedSpecialLeaveType">
+                                    <label>{{"i18n.employeeProfile.personal-details.personalDetails.specialLeaveentitlement"
+                                        | translate}}</label>
+                                    <input type="text"
+                                        [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enterspecialLeaveentitlement' | translate"
+                                        formControlName="leaveQuota" name="specialLeaveEntitlement">
+                                </li>
+                            </ng-container>
+                            <ul class="two_li">
+
+                                <li>
+                                    <div class="check_box_group permission_grp">
+                                        <div class="form-group">
+                                            <input type="checkbox" id="No2" [formControl]="adjustEndDateCheckedControl">
+
+
+                                            <label
+                                                for="No2">{{"i18n.employeeProfile.personal-details.personalDetails.adjustedEndDate"|translate}}</label>
+                                        </div>
+                                    </div>
+                                </li>
+                                <li *ngIf="adjustEndDateCheckedControl.value">
+                                    <label
+                                        class="childreninfolabel">{{"i18n.employeeProfile.personal-details.personalDetails.currentyearleaveentitlement"
+                                        | translate}}</label>
+                                    <input type="date" placeholder="dd/mm/yyyy"
+                                        min="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}"
+                                        [formControl]="formattedDateControl" name="leaveEndDate">
+                                </li>
+                            </ul>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right__part">
+            <div class="cont cont1_1">
+                <div class="common_form">
+                    <div class="common_title">
+                        <h2 class="h2">
+                            {{"i18n.employeeProfile.personal-details.personalDetails.childreninformation"|translate}}
+                        </h2>
+                    </div>
+                    <div class="form_fields four_fields">
+
+                        <ul class="one_fields">
+                            <li>
+                                <div class="check_box_group permission_grp">
+                                    <div class="form-group">
+                                        <input type="checkbox" id="room" [(ngModel)]="Employeess.employeehavechildren"
+                                            name="employeehavechildren" (change)="onChildrenChange()">
+                                        <label for="room"
+                                            class="childreninfolabel">{{"i18n.employeeProfile.personal-details.personalDetails.childrenquestion"|translate}}</label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul class="four_fields" *ngIf="Employeess.employeehavechildren">
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.firstnameofchild"|translate}}</label>
+                                <input type="text"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enterfirstnameofchild' | translate"
+                                    [(ngModel)]="Employeess.child_FirstName" name="child_FirstName">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.familynameofchild"|translate}}</label>
+                                <input type="text"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.familynameofchild' | translate"
+                                    [(ngModel)]="Employeess.familyName" name="familyName">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.dob"|translate}}</label>
+                                <input type="date" value="12/12/2023" [(ngModel)]="Employeess.chIld_BirthDate"
+                                    name="child_BirthDate" max="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.locationofchild"|translate}}</label>
+                                <input type="text"
+                                    [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.location' | translate"
+                                    [(ngModel)]="Employeess.locationchildregistered" name="locationChildRegistered">
+                            </li>
+                            <li>
+                                <label
+                                    class="childreninfolabelfile">{{"i18n.employeeProfile.personal-details.personalDetails.selfdisclosureofchild"|translate}}</label>
+                                <div class="file-input">
+                                    <input type="file" (change)="onFileSelectedesocialCareInsurancefile($event)">
+                                    <div class="file-name">{{ socialcarefileName }}</div>
+                                    <span *ngIf="!isFileSelectedsocialcare" class="label"
+                                        data-js-label="">{{"i18n.employeeProfile.personal-details.personalDetails.uploadDocumentssn"|translate}}</span>
+                                    <span class="button"><img src="assets/image/upload.svg" alt="cloud"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <label
+                                    class="childreninfolabelfile">{{"i18n.employeeProfile.personal-details.personalDetails.birthcertificate"|translate}}</label><br>
+                                <br>
+                                <div class="file-input">
+                                    <input type="file" (change)="onFileSelectedebirthCertificatefile($event)">
+                                    <div class="file-name">{{ birthcertificatefileName }}</div>
+                                    <span *ngIf="!isFileSelectedbirthcertificate" class="label"
+                                        data-js-label="">{{"i18n.employeeProfile.personal-details.personalDetails.uploadDocumentssn"|translate}}</span>
+                                    <span class="button"><img src="assets/image/upload.svg" alt="cloud"></span>
+                                </div>
+                            </li>
+                        </ul>
+                        <!-- <ul class="one_fields">
+                           
+                        </ul> -->
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="!Employeess.id" class="right__part">
+            <div class="cont cont1_1">
+                <div class="common_form">
+                    <div class="common_title">
+                        <h2 class="h2">
+                            {{"i18n.employeeProfile.personal-details.personalDetails.languageCompetence"|translate}}
+                        </h2>
+                    </div>
+                    <div class="form_fields four_fields">
+
+                        <form [formGroup]="languageForm">
+                            <!-- English Language Section -->
+                            <div formGroupName="English">
+
+                                <ul>
+                                    <!-- <li>
+                                  <label>Language Name</label>
+                                  <input type="text" formControlName="Name" >
+                                </li> -->
+                                    <li>
+                                        <label>English</label>
+                                        <select formControlName="level" aria-placeholder="select level">
+                                            <option *ngFor="let item of languagelevedata" [value]="item.id">{{
+                                                item.level }}</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <label>{{"i18n.employeeProfile.personal-details.personalDetails.languageCertificate"|translate}}</label>
+                                        <div class="file-input">
+                                            <input type="file" formControlName="languagesCertificate"
+                                                (change)="onFileSelected($event)">
+                                            <span class="label"
+                                                data-js-label>{{"i18n.employeeProfile.personal-details.personalDetails.uploadFile"|translate}}</span>
+                                            <span class="button"><img src="assets/image/upload.svg" alt="cloud"></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Germany Language Section -->
+                            <div formGroupName="Germany">
+                                <ul>
+                                    <!-- <li>
+                                  <label>Language Name</label>
+                                  <input type="text" formControlName="Name" >
+                                </li> -->
+                                    <li>
+                                        <label>{{"i18n.employeeProfile.personal-details.personalDetails.german"|translate}}</label>
+                                        <select formControlName="level" aria-placeholder="select level">
+                                            <option *ngFor="let item of languagelevedata" [value]="item.id">{{
+                                                item.level }}</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <label>{{"i18n.employeeProfile.personal-details.personalDetails.languageCertificate"|translate}}</label>
+                                        <div class="file-input">
+                                            <input type="file" formControlName="languagesCertificate"
+                                                (change)="onFileSelectedone($event)">
+                                            <span class="label"
+                                                data-js-label>{{"i18n.employeeProfile.personal-details.personalDetails.uploadFile"|translate}}</span>
+                                            <span class="button"><img src="assets/image/upload.svg" alt="cloud"></span>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                            <!-- Other Languages Section -->
+                            <div formGroupName="Other">
+                                <ul>
+                                    <li>
+                                        <label>{{"i18n.employeeProfile.personal-details.personalDetails.otherlanguage"|translate}}</label>
+                                        <input type="text"
+                                            [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enterotherlanguage' | translate"
+                                            formControlName="name">
+                                    </li>
+                                    <li>
+                                        <label>{{"i18n.employeeProfile.personal-details.personalDetails.selectlevel"|translate}}</label>
+                                        <select formControlName="level" aria-placeholder="select level">
+                                            <option *ngFor="let item of languagelevedata" [value]="item.id">{{
+                                                item.level }}</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <label>{{"i18n.employeeProfile.personal-details.personalDetails.languageCertificate"|translate}}</label>
+                                        <div class="file-input">
+                                            <input type="file" formControlName="languagesCertificate"
+                                                (change)="onFileSelectedtwo($event)">
+                                            <span class="label" data-js-label>Upload file</span>
+                                            <span class="button"><img src="assets/image/upload.svg" alt="cloud"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <input class="ml_25 file-input language-add-btn" type="button" value="Add"
+                                            (click)="AddOtherLanguage()">
+                                        <!-- Call AddOtherLanguage() method when the button is clicked -->
+                                    </li>
+                                </ul>
+                                <!-- Additional Other Languages -->
+                                <div formArrayName="Addlanguage">
+                                    <ul *ngFor="let language of Addlanguage.controls; let i=index" [formGroupName]="i">
+                                        <li>
+                                            <label>{{"i18n.employeeProfile.personal-details.personalDetails.otherlanguage"|translate}}</label>
+                                            <input type="text"
+                                                [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enterotherlanguage' | translate"
+                                                formControlName="name">
+                                        </li>
+                                        <li>
+                                            <label>{{"i18n.employeeProfile.personal-details.personalDetails.selectlevel"|translate}}</label>
+                                            <select formControlName="level" aria-placeholder="select level">
+                                                <option *ngFor="let item of languagelevedata" [value]="item.id">{{
+                                                    item.level }}</option>
+                                            </select>
+                                        </li>
+                                        <li>
+                                            <label>{{"i18n.employeeProfile.personal-details.personalDetails.languageCertificate"|translate}}</label>
+                                            <div class="file-input">
+                                                <input type="file" formControlName="languagesCertificate"
+                                                    (change)="onFileSelectedthree($event)">
+                                                <span class="label"
+                                                    data-js-label>{{"i18n.employeeProfile.personal-details.personalDetails.uploadFile"|translate}}</span>
+                                                <span class="button"><img src="assets/image/upload.svg"
+                                                        alt="cloud"></span>
+                                            </div>
+                                        </li>
+                                        <li>
+
+                                            <button class="ml_25  language-add-btn  delete_btn" value="Delete"
+                                                (click)="DeleteLanguage(i)">{{"i18n.Common.Delete"|translate}}</button>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+
+
+
+                    </div>
+                    <div class="form_fields">
+                        <div class="table_part">
+                            <div class="table_space">
+                                <div class="table_scroll no_scroll">
+                                    <!-- <app-beon-grid [showDeleteButton]="showDelete" [dataRowSource]="dataRowSource"
+                                        [columnDefs]="columnDefs" 
+                                        [totalItems]="totalItems"></app-beon-grid> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="Employeess.id" class="right__part">
+            <div class="cont cont1_1">
+                <div class="common_form">
+                    <div class="common_title">
+                        <h2 class="h2">
+                            {{"i18n.employeeProfile.personal-details.personalDetails.languageCompetence"|translate}}
+                        </h2>
+                    </div>
+                    <div class="form_fields four_fields">
+                        <form [formGroup]="languageForms" (ngSubmit)="onSubmit()">
+                            <div>
+                                <ul>
+                                    <li>
+                                        <label>{{"i18n.employeeProfile.personal-details.personalDetails.otherlanguage"|translate}}</label>
+                                        <input type="text" formControlName="otherLanguage"
+                                            [placeholder]="'i18n.employeeProfile.personal-details.personalDetails.enterotherlanguage' | translate">
+                                    </li>
+                                    <li>
+                                        <label>{{"i18n.employeeProfile.personal-details.personalDetails.selectlevel"|translate}}</label>
+                                        <select formControlName="level" placeholder="select level">
+                                            <option *ngFor="let item of languagelevedata" [value]="item.id">{{
+                                                item.level }}</option>
+                                        </select>
+                                    </li>
+                                    <li>
+                                        <label>{{"i18n.employeeProfile.personal-details.personalDetails.languageCertificate"|translate}}</label>
+                                        <div class="file-input">
+                                            <input type="file" formControlName="languageCertificate">
+                                            <span class="label"
+                                                data-js-label>{{"i18n.employeeProfile.personal-details.personalDetails.otherlanguage"|translate}}</span>
+                                            <span class="button"><img src="assets/image/upload.svg" alt="cloud"></span>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <input class="ml_25 file-input language-add-btn" type="submit" value="Add">
+                                    </li>
+                                </ul>
+                            </div>
+                        </form>
+                    </div>
+                    <!-- <div class="form_fields"> -->
+                    <div class="table_part">
+                        <div class="table_space">
+                            <div class="table_scroll no_scroll ">
+                                <app-beon-grid [showDeleteButton]="showDelete" [dataRowSource]="dataRowSource"
+                                    (onDelete)="onDeleteClick($event)" [columnDefs]="columnDefs">
+                                </app-beon-grid>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- </div> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="right__part">
+            <div class="cont cont1_1">
+                <div class="common_form">
+                    <div class="common_title">
+                        <h2 class="h2">
+                            {{"i18n.employeeProfile.personal-details.personalDetails.jobTitleRole"|translate}}</h2>
+                    </div>
+                    <div class="form_fields">
+
+                        <ul>
+
+                            <li>
+                                <label>{{ "i18n.employeeProfile.personal-details.personalDetails.designation" |
+                                    translate }}</label>
+                                <select [(ngModel)]="Employeess.designation" name="designation"
+                                    (change)="onDesignationChange()">
+                                    <ng-container *ngFor="let item of Designationdata">
+                                        <option [value]="item.id">{{ item.designation }}</option>
+                                    </ng-container>
+                                </select>
+                            </li>
+
+                            <li>
+                                <label>{{ "i18n.employeeProfile.personal-details.personalDetails.slg" | translate
+                                    }}</label>
+                                <input type="hidden" [(ngModel)]="Employeess.slgStatus" name="slgStatusHidden">
+                                <select name="slgStatus" [disabled]="!filteredSLGGroups.length">
+                                    <ng-container *ngFor="let item of filteredSLGGroups">
+                                        <option [value]="item.slgGroup.id">{{ item.slgGroup.initialStatus }}</option>
+                                    </ng-container>
+                                </select>
+                            </li>
+
+
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.role"|translate}}</label>
+                                <select [(ngModel)]="Employeess.roleId " name="role">
+                                    <!-- <option>HR</option>
+                                        <option>Project Leader</option>
+                                        <option>Sr.Developer</option> -->
+                                    <ng-container *ngFor="let item of Roledata">
+                                        <option [value]="item.id">{{ item.name }}</option>
+                                    </ng-container>
+                                </select>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="right__part">
+            <div class="cont cont1_1">
+                <div class="common_form">
+                    <div class="common_title">
+                        <h2 class="h2">{{"i18n.employeeProfile.personal-details.personalDetails.leadership"|translate}}
+                        </h2>
+                    </div>
+                    <div class="form_fields">
+                        <!-- <ng-container *ngFor="let item of Countrydata">
+                            <option
+                              [selected]="item.id == State_region.countryId"
+                              [value]="item.id"
+                            >
+                              {{ item.countryName }}
+                            </option>
+                          </ng-container> -->
+                        <ul>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.leader1"|translate}}</label>
+                                <select name="leader1" [(ngModel)]="Employeess.leader1Id">
+                                    <ng-container *ngFor="let item of slg1Employees">
+                                        <option [selected]="item.id==Employeess.leader1Id" [value]="item.id">
+                                            {{item.fullName }}</option>
+                                    </ng-container>
+                                </select>
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.leader2"|translate}}</label>
+                                <select name="leader2" [(ngModel)]="Employeess.leader2Id">
+                                    <ng-container *ngFor="let item of slg2And3Employees">
+                                        <option [selected]="item.id==Employeess.leader2Id" [value]="item.id">
+                                            {{item.fullName}}</option>
+                                    </ng-container>
+                                </select>
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.defaultleader"|translate}}</label>
+                                <select name="defaultLeader" [(ngModel)]="Employeess.defaulLeaderId">
+                                    <ng-container *ngFor="let item of slg4Employees">
+                                        <option [selected]="item.id==Employeess.defaulLeaderId" [value]="item.id">
+                                            {{item.fullName}}</option>
+                                    </ng-container>
+                                </select>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="right__part">
+            <div class="cont cont1_1">
+                <div class="common_form">
+                    <div class="common_title">
+                        <h2 class="h2">{{"i18n.employeeProfile.personal-details.personalDetails.probation"|translate}}
+                        </h2>
+                    </div>
+                    <div class="form_fields">
+
+                        <ul class="one_fields">
+                            <li>
+                                <div class="check_box_group permission_grp">
+                                    <div class="form-group">
+                                        <input type="checkbox" id="probationCheckbox"
+                                            [(ngModel)]="Employeess.istheemployeeonprobation" name="probationCheckbox"
+                                            (change)="onProbationChange()">
+                                        <label for="probationCheckbox"
+                                            class="probationLabel">{{"i18n.employeeProfile.personal-details.personalDetails.probationentitlement"|translate}}</label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+
+                        <ul *ngIf="Employeess.istheemployeeonprobation">
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.startDate"|translate}}</label>
+                                <input type="date" placeholder="dd/mm/yyyy" [(ngModel)]="Employeess.startDate"
+                                    name="startDate" max="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.endDate"|translate}}</label>
+                                <input type="date" placeholder="dd/mm/yyyy" name="endDate"
+                                    [(ngModel)]="Employeess.endDate" min="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}">
+                            </li>
+                            <li></li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.probationnote"|translate}}
+                                </label>
+                                <div class="check_box_group permission_grp">
+                                    <div class="form-group">
+                                        <input type="checkbox" id="Leave" name="adjustedenddatecheck"
+                                            [(ngModel)]="Employeess.adjustedenddatecheck">
+                                        <label
+                                            for="Leave">{{"i18n.employeeProfile.personal-details.personalDetails.isadjenddate"|translate}}</label>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.adjustedEndDate"|translate}}</label>
+                                <input type="date" placeholder="dd/mm/yyyy"
+                                    [(ngModel)]="Employeess.prob_AdjustedEndDate" name="adjustedEndDate"
+                                    min="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.adjustedofemployeedoc"|translate}}</label>
+                                <div class="file-input">
+                                    <input type="file" (change)="onFileSelectedeAdjustedofemplyeefile($event)">
+                                    <div class="file-name">{{ fileNameAdjustedofemplyee }}</div>
+                                    <span *ngIf="!isFileSelectedAdjustedofemployee" class="label"
+                                        data-js-label="">{{"i18n.employeeProfile.personal-details.personalDetails.uploadFile"|translate}}</span>
+                                    <span class="button"><img src="assets/image/upload.svg" alt="cloud"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <label
+                                    class="childreninfolabel">{{"i18n.employeeProfile.personal-details.personalDetails.childinfo"|translate}}
+                                </label>
+                                <div class="check_box_group permission_grp">
+                                    <div class="form-group">
+                                        <input type="checkbox" id="Unlimited"
+                                            [(ngModel)]="Employeess.probationUnlimited" name="ProbationUnlimited">
+                                        <label for="Unlimited">
+                                            {{"i18n.employeeProfile.personal-details.personalDetails.unlimited"|translate}}</label>
+                                    </div>
+                                </div>
+                            </li>
+
+                        </ul>
+
+
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+        <div class="right__part">
+            <div class="cont cont1_1">
+                <div class="common_form">
+                    <div class="common_title">
+                        <h2 class="h2">
+                            {{"i18n.employeeProfile.personal-details.personalDetails.endofemployement"|translate}}</h2>
+                    </div>
+                    <div class="form_fields">
+                        <ul class="one_fields">
+                            <li>
+                                <div class="check_box_group permission_grp">
+                                    <div class="form-group">
+                                        <input type="checkbox" id="endOfEmploymentCheckbox"
+                                            [(ngModel)]="Employeess.isthistheendofemployment"
+                                            name="endOfEmploymentCheckbox" (change)="onEndofEmployementChange()">
+                                        <label for="endOfEmploymentCheckbox"
+                                            class="endOfEmploymentLabel">{{"i18n.employeeProfile.personal-details.personalDetails.endentitlement"|translate}}</label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <ul *ngIf="Employeess.isthistheendofemployment">
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.noticestartdate"|translate}}</label>
+                                <input type="date" max="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}"
+                                    placeholder="dd/mm/yyyy" name="NoticePeriodStartDate"
+                                    [(ngModel)]="Employeess.noticePeriodStartDate">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.noticeenddate"|translate}}</label>
+                                <input type="date" min="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}"
+                                    placeholder="dd/mm/yyyy" name="NoticePeriodEndDate"
+                                    [(ngModel)]="Employeess.noticePeriodEndDate">
+                            </li>
+                            <li></li>
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="right__part">
+            <div class="cont cont1_1">
+                <div class="common_form">
+                    <div class="common_title">
+                        <h2 class="h2">{{"i18n.employeeProfile.personal-details.personalDetails.termination"|translate}}
+                        </h2>
+                    </div>
+                    <div class="form_fields">
+                        <ul>
+                            <li>
+                                <label
+                                    class="childreninfolabel">{{"i18n.employeeProfile.personal-details.personalDetails.terminationnote"|translate}}</label>
+                                <div class="check_box_group permission_grp">
+                                    <div class="form-group">
+                                        <input type="checkbox" id="Terminated" [(ngModel)]="Employeess.isTerminated"
+                                            name="isTerminated" (change)="onTerminationChange()">
+                                        <label
+                                            for="Terminated">{{"i18n.employeeProfile.personal-details.personalDetails.terminated"|translate}}</label>
+                                    </div>
+                                </div>
+                            </li>
+                        </ul>
+                        <ul *ngIf="Employeess.isTerminated">
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.terminationstartdate"|translate}}</label>
+                                <input type="date" max="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}"
+                                    placeholder="dd/mm/yyyy" [(ngModel)]="Employeess.terminationStartDate"
+                                    name="TerminationStartDate">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.terminationenddate"|translate}}</label>
+                                <input type="date" min="{{ getCurrentDate() | date: 'yyyy-MM-dd' }}"
+                                    placeholder="dd/mm/yyyy" [(ngModel)]="Employeess.terminationEndDate"
+                                    name="TerminationEndDate">
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.terminationofemployee"|translate}}</label>
+                                <div class="file-input">
+                                    <input type="file" (change)="onFileSelectedeTerminationofemplyeefile($event)">
+                                    <div class="file-name">{{ TerminationfileName }}</div>
+                                    <span *ngIf="!isFileSelectedTermination" class="label"
+                                        data-js-label="">{{"i18n.employeeProfile.personal-details.personalDetails.uploadFile"|translate}}</span>
+                                    <span class="button"><img src="assets/image/upload.svg" alt="cloud"></span>
+                                </div>
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.deliverymethod"|translate}}</label>
+                                <select [(ngModel)]="Employeess.deliverymethodId" name="Deliverymethod">
+                                    <ng-container *ngFor="let item of Deliverymethod">
+                                        <option [selected]="item.id == Employeess.deliverymethodId" [value]="item.id">
+                                            {{"i18n.employeeProfile.personal-details.personalDetails.deliverymethoddetails."+item.deliveryMethod|translate}}
+                                        </option>
+                                    </ng-container>
+                                </select>
+                            </li>
+                            <li>
+                                <label>{{"i18n.employeeProfile.personal-details.personalDetails.dateofreceipt"|translate}}</label>
+                                <input type="date" placeholder="Date of receipt" [(ngModel)]="Employeess.dateofreceipt"
+                                    name="Dateofreceipt">
+                            </li>
+                        </ul>
+                    </div>
+
+
+                </div>
+                <input type="submit" value="Save" class="employeesavebtn"
+                    *ngIf="hasPermission('employeeprofile.personal.Add')">
+            </div>
+
+        </div>
+
+
+    </form>
+</div>

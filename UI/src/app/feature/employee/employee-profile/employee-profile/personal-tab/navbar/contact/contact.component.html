@@ -1,0 +1,309 @@
+<div class="right__part">
+    <div class="cont cont1_2">
+        <form>
+            <div class="common_form">
+                <div class="common_title">
+                    <h2 class="h2">{{'i18n.employeeProfile.personal-details.contact'|translate}}</h2>
+                </div>
+                <div class="form_fields four_fields ">
+                    <form #Form="ngForm">
+                        <div class="form-fields three-column popup-forms">
+
+                            <div>
+                                <label
+                                    for="Street">{{'i18n.employeeProfile.personal-details.contact-Details.street'|translate}}</label>
+                                <input type="text" id="Streetname" name="Streetname"
+                                    [(ngModel)]="ContactAddressDetail.street"
+                                    placeholder="{{'i18n.employeeProfile.personal-details.contact-Details.street'|translate}}"
+                                    required />
+                            </div>
+                            <div>
+                                <label
+                                    for="House Number">{{'i18n.employeeProfile.personal-details.contact-Details.houseNumber'|translate}}</label>
+                                <input type="text" id="House Number" name="House Number"
+                                    [(ngModel)]="ContactAddressDetail.number"
+                                    placeholder="{{'i18n.employeeProfile.personal-details.contact-Details.houseNumber'|translate}}"
+                                    required />
+                            </div>
+                            <div>
+                              
+                                <label
+                                    for="ZipCode">{{'i18n.employeeProfile.personal-details.contact-Details.zipCode'|translate}}</label>
+
+                                <input type="text" id="ZipCode" name="ZipCode"
+                                    [(ngModel)]="ContactAddressDetail.contactZipCode"
+                                    placeholder="{{'i18n.employeeProfile.personal-details.contact-Details.zipCode'|translate}}"
+                                    required />
+                            </div>
+
+                            <div >
+                                <label for="Country">{{'i18n.employeeProfile.personal-details.contact-Details.country' | translate}}  </label>
+                              
+                                <ng-select class="ng-selects" [(ngModel)]="ContactAddressDetail.contactCountryId" name="Country" (ngModelChange)="onSelect($event)" aria-placeholder="Select Country" >
+                                    <ng-option *ngFor="let item of country" [value]="item.id">
+                                      {{item.countryName}}
+                                    </ng-option>
+                                  </ng-select>
+                                  
+                            </div>
+                            
+                            
+                            <div>
+                                <label for="State">{{'i18n.employeeProfile.personal-details.contact-Details.state' | translate}}</label>
+                                <!-- <select [(ngModel)]="ContactAddressDetail.contactStateId" name="State" (change)="onStateSelect($event)"  aria-placeholder="Select State">
+                                    <ng-container *ngFor="let state of filteredStates">
+                                        <option [selected]="state.id === ContactAddressDetail.contactStateId" [value]="state.id">
+                                            {{ state.name}}
+                                        </option>
+                                    </ng-container>
+                                </select> -->
+                                <ng-select class="ng-selects" [(ngModel)]="ContactAddressDetail.contactStateId" name="State" (ngModelChange)="onStateSelect($event)" aria-placeholder="Select State">
+                                    <ng-option *ngFor="let state of filteredStates" [value]="state.id">
+                                      {{state.name}}
+                                    </ng-option>
+                                  </ng-select>
+                                  
+                                
+
+                            </div>
+                            <div>
+                                <label
+                                    for="City">{{'i18n.employeeProfile.personal-details.contact-Details.city'|translate}}</label>
+                                <!-- <select [(ngModel)]="ContactAddressDetail.contactCity" name="city" (change)="onCitySelect($event)"
+                                    aria-placeholder="Select City">
+                                    <ng-container *ngFor="let city of filteredCity">
+                                    <option  [selected]="city.id == ContactAddressDetail.contactCity" [value]="city.id">{{ city.name }}</option>
+                                </ng-container>
+                                </select> -->
+
+                                <ng-select class="ng-selects" [(ngModel)]="ContactAddressDetail.contactCity" name="city" (change)="onCitySelect($event)" aria-placeholder="Select City
+                                ">
+                                     <ng-option *ngFor="let city of filteredCity"  [value]="city.id">
+                                       {{city.name}}
+                                     </ng-option>
+                                   </ng-select>
+                            </div>
+
+                            <div>
+                                <label
+                                    for="PhoneNumber1">{{'i18n.employeeProfile.personal-details.contact-Details.Phone1'|translate}}</label>
+
+                                <input type="text" id="PhoneNumber1" name="PhoneNumber1"
+                                    [(ngModel)]="ContactAddressDetail.contactPhone1"
+                                    placeholder="{{'i18n.employeeProfile.personal-details.contact-Details.Phone1'|translate}}"
+                                    required />
+                            </div>
+
+                            <div>
+                                <label
+                                    for="PhoneNumber2">{{'i18n.employeeProfile.personal-details.contact-Details.Phone2'|translate}}</label>
+
+                                <input type="text" id="PhoneNumber2" name="PhoneNumber2"
+                                    [(ngModel)]="ContactAddressDetail.contactPhone2"
+                                    placeholder="{{'i18n.employeeProfile.personal-details.contact-Details.Phone2'|translate}}" />
+                            </div>
+                            <div>
+                                <label
+                                    for="emailbeON">{{'i18n.employeeProfile.personal-details.contact-Details.emailbeOn'|translate}}</label>
+                                <input type="text" id="emailbeON" name="emailbeON"
+                                    [(ngModel)]="ContactAddressDetail.contactEmailbeON"
+                                    placeholder="{{'i18n.employeeProfile.personal-details.contact-Details.emailbeOn'|translate}}"
+                                    required />
+                            </div>
+
+                            <div>
+                                <label
+                                    for="emailPrivate">{{'i18n.employeeProfile.personal-details.contact-Details.emailPrivate'|translate}}</label>
+                                <input type="text" id="emailPrivate" name="emailPrivate"
+                                    [(ngModel)]="ContactAddressDetail.contactEmailPrivate"
+                                    placeholder="{{'i18n.employeeProfile.personal-details.contact-Details.emailPrivate'|translate}}"
+                                    required />
+                            </div>
+                            <div>
+                                <!-- BLANK -->
+                            </div>
+
+
+                            <label style="color: white;">x </label>
+                            <div class="check_box_group permission_grp">
+                                <div class="form-group">
+                                    <input type="checkbox" id="room" name="contactEntitlement"
+                                        [(ngModel)]="ContactAddressDetail.contactEntitlement">
+                                    <label
+                                        for="room">{{'i18n.employeeProfile.personal-details.contact-Details.flat/room'|translate}}</label>
+                                </div>
+                            </div>
+
+
+                        </div>
+                        <!-- <input type="submit" class="btn btn-primary ml-25 mb-20" value="add"
+                            *ngIf="ContactAddressDetail.id" /> -->
+                    </form>
+                </div>
+            </div>
+
+            <div class="common_form">
+                <div class="common_title">
+                    <h2 class="h2">{{'i18n.employeeProfile.personal-details.worklocation'|translate}}</h2>
+                </div>
+                <div class="form_fields four_fields ">
+                    <form #Form="ngForm">
+                        <div class="form-fields three-column popup-forms">
+
+                            <div>
+                                <label
+                                    for="Country">{{'i18n.employeeProfile.personal-details.worklocation-Details.country'|translate}}
+                                </label>
+                                <!-- <select [(ngModel)]="Contact.workCountryId" name="Country" (change)="onSelect1($event)"
+                                    aria-placeholder="Select Country">
+                                  
+                                    <ng-container *ngFor="let item of country">
+                                        <option [selected]="item.id === Contact.workCountryId" [value]="item.id">
+                                            {{ item.countryName }}0
+                                        </option>
+                                    </ng-container>
+                                  
+                                </select> -->
+
+                               
+
+                                <ng-select  class="ng-selects" [(ngModel)]="Contact.workCountryId" name="Country" (ngModelChange)="onSelect1($event)"
+                                aria-placeholder="Select Country">
+                                    <ng-option *ngFor="let item of country"  [value]="item.id">
+                                      {{item.countryName}}
+                                    </ng-option>
+                                  </ng-select>
+                            </div>
+                            <div>
+                                <label
+                                    for="Fedralstate">{{'i18n.employeeProfile.personal-details.worklocation-Details.state'|translate}}
+                                </label>
+                              
+                                <!-- <ng-select [(ngModel)]="Contact.workStateId" name="Fedralstate" (change)="onStateSelect1($event)" aria-placeholder="Select Fedralstate
+                                ">
+                                     <ng-option *ngFor="let item of filteredStates1"  [value]="item.id">
+                                       {{item.name}}
+                                     </ng-option>
+                                   </ng-select> -->
+
+                                   <ng-select class="ng-selects" [(ngModel)]="Contact.workStateId" name="Fedralstate" (ngModelChange)="onStateSelect1($event)" aria-placeholder="Select Fedralstate">
+                                    <ng-option *ngFor="let state of filteredStates1" [value]="state.id">
+                                      {{state.name}}
+                                    </ng-option>
+                                  </ng-select>
+
+                            </div>
+
+                            <div>
+                                <label
+                                    for="City">{{'i18n.employeeProfile.personal-details.worklocation-Details.city'|translate}}
+                                </label>
+                                
+                                <!-- <select [(ngModel)]="Contact.workCity" name="city"
+                                aria-placeholder="Select City">
+                                <option *ngFor="let city of filteredCity" [value]="city.id">{{ city.name }}</option>
+                            </select> -->
+                            <ng-select class="ng-selects" [(ngModel)]="Contact.workCity" name="city"  (change)="onCitySelect($event)" aria-placeholder="Select City
+                            ">
+                                 <ng-option *ngFor="let city of filteredCity1"   [value]="city.id">
+                                   {{city.name}}
+                                 </ng-option>
+                               </ng-select>
+                            </div>
+
+                            <div>
+                                <label
+                                    for="ZipCode">{{'i18n.employeeProfile.personal-details.worklocation-Details.zipCode'|translate}}
+                                </label>
+                                <input type="text" id="ZipCode" name="ZipCode" [(ngModel)]="Contact.workZipCode"
+                                    placeholder="{{'i18n.employeeProfile.personal-details.worklocation-Details.zipCode'|translate}}"
+                                    required />
+                            </div>
+                        </div>
+                        <!-- <input type="submit" class="btn btn-primary ml-25 mb-20" value="add" *ngIf="Contact.id" /> -->
+                    </form>
+                </div>
+            </div>
+
+            <div class="common_form">
+                <div class="common_title">
+                    <h2 class="h2">{{'i18n.employeeProfile.personal-details.bankdetails'|translate}}</h2>
+                </div>
+                <div class="form_fields">
+                    <form #Form="ngForm">
+                        <div class="form-fields three-column popup-forms">
+                          <div>
+                            <label for="IBAN/Account number">
+                              {{ 'i18n.employeeProfile.personal-details.Bank-details.accountnumber' | translate }}
+                            </label>
+                            <input 
+                              type="text" 
+                              id="IBAN/Account number" 
+                              name="IBAN/Account number"
+                              [(ngModel)]="BankDetail.bankAccountNumber"
+                              placeholder="{{ 'i18n.employeeProfile.personal-details.Bank-details.accountnumber' | translate }}"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label for="BIC/NEFT IFSC Code">
+                              {{ 'i18n.employeeProfile.personal-details.Bank-details.ifscCode' | translate }}
+                            </label>
+                            <input 
+                              type="text" 
+                              id="BIC/NEFT IFSC Code" 
+                              name="BIC/NEFT IFSC Code"
+                              [(ngModel)]="BankDetail.bankIFSCCode"
+                              placeholder="{{ 'i18n.employeeProfile.personal-details.Bank-details.ifscCode' | translate }}"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label for="Bank name/Branch">
+                              {{ 'i18n.employeeProfile.personal-details.Bank-details.branchname' | translate }}
+                            </label>
+                            <input 
+                              type="text" 
+                              id="Bank name/Branch" 
+                              name="Bank name/Branch"
+                              [(ngModel)]="BankDetail.bankName"
+                              placeholder="{{ 'i18n.employeeProfile.personal-details.Bank-details.branchname' | translate }}"
+                              required
+                            />
+                          </div>
+                          <div>
+                            <label>Note: User can select a checkbox and According to the triggering action </label>
+                            <div class="check_box_group permission_grp">
+                              <div class="form-group">
+                                <input 
+                                  type="checkbox" 
+                                  id="employee" 
+                                  (change)="autoFillAccountHolder($event)"
+                                />
+                                <label for="employee"> Same like employee name</label>
+                              </div>
+                            </div>
+                          </div>
+                          <div>
+                            <label for="Account holder">
+                              {{ 'i18n.employeeProfile.personal-details.Bank-details.accountholder' | translate }}
+                            </label>
+                            <input 
+                              type="text" 
+                              id="Account holder" 
+                              name="Account holder"
+                              [(ngModel)]="BankDetail.bankAccountHolder"
+                              placeholder="{{ 'i18n.employeeProfile.personal-details.Bank-details.accountholder' | translate }}"
+                              required
+                            />
+                          </div>
+                        </div>
+                      </form>
+                      
+                </div>
+            </div>
+            <input type="submit" class=" ml-25 " value="{{'i18n.Common.Save'|translate}}" (click)="SaveContact()">
+        </form>
+    </div>
+</div>
+

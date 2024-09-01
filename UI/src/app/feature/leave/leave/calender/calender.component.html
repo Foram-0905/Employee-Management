@@ -1,0 +1,29 @@
+<div class="common_form">
+  <div class="common_title">
+    <h2 class="h2 mb-0">
+      {{ "i18n.leave.employeeLeaveBalance.calendar" | translate }}
+    </h2>
+    <ng-container *ngIf="activeTab=='officeManagementBalance'">
+      <select id="employeeName" class="float-end" [(ngModel)]="selectedEmployee" name="employeeName"
+              aria-placeholder="select Employee Name" (ngModelChange)="changeEmployee()">
+              <option value="All">All Employee</option>
+              <ng-container *ngFor="let item of employeeList">
+                <option [selected]="item.id == selectedEmployee" [value]='item.fullName'>
+                  {{
+                  item.fullName
+                  }}
+                </option>
+              </ng-container>
+            </select>
+  </ng-container>
+  </div>
+  <div>
+
+  </div>
+  <div class="table_space p-4 h-50">
+    <div class="table_scroll">
+      <full-calendar [options]="calendarOptions" (eventMouseEnter)="handleEventMouseEnter($event)"
+      (eventMouseLeave)="handleEventMouseLeave($event)"></full-calendar>
+    </div>
+  </div>
+</div>

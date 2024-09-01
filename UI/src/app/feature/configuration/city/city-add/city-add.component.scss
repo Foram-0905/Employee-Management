@@ -1,0 +1,312 @@
+// @import '../../../../styles/abstracts/variable';
+// @import '../../../../styles/layout/popup';
+
+
+// .form-fields {
+//   margin-top: 20px;
+//   display: grid;
+//   grid-template-columns: repeat(2, 1fr);
+//   gap: 25px;
+//   background-color: $White;
+//   padding: 20px;
+// }
+
+
+// // Mixins
+// @mixin flex-center {
+//   display: flex;
+//   justify-content: center;
+//   align-items: center;
+// }
+
+// .custom-modal-width {
+//   max-width: 1000px; /* Adjust this value as needed */
+// }
+
+// .form-box {
+//   background-color:$White;
+//   border-radius: 5px;
+//   width: 100%;
+//   max-width: 1000px;
+
+//   .form-fields {
+//     margin-top: 20px;
+//     display: grid;
+   
+//     gap: 25px;
+//     background-color: $form-background-color;
+//     padding: 20px;
+//   }
+
+//   .popup-forms {
+//     width: 100%;
+//     max-width: 1000px;
+//   }
+
+//   label {
+//     color: $label-color;
+//     font-size: 14px;
+//     font-weight: 400;
+//     line-height: 1.5;
+//     margin-bottom: 10px;
+//     display: block;
+//   }
+//   label {
+//     color: $label-color;
+//     font-size: 14px;
+//     font-weight: 400;
+//     line-height: 1.5;
+//     margin-bottom: 10px;
+//     display: block;
+//   }
+
+//   input[type="text"] {
+//     border: none;
+//     color: $text-color;
+//     font-size: 14px;
+//     height: 50px;
+//     font-weight: 400;
+//     width: 100%;
+//     background: $input-background;
+//     border-radius: 5px;
+//     box-shadow: 0px 2px 4px #7777772e;
+//     padding: 15px;
+//   input[type="text"] {
+//     border: none;
+//     color: $text-color;
+//     font-size: 14px;
+//     height: 50px;
+//     font-weight: 400;
+//     width: 100%;
+//     background: $input-background;
+//     border-radius: 5px;
+//     box-shadow: 0px 2px 4px #7777772e;
+//     padding: 15px;
+
+//     &:focus {
+//       outline: none;
+//       background: $input-focus-background;
+//     }
+//   }
+//     &:focus {
+//       outline: none;
+//       background: $input-focus-background;
+//     }
+//   }
+
+//   .btn {
+//     padding: 10px 20px;
+//     color: $button-font-color;
+//     margin-left: 25px;
+//     margin-bottom: 34px;
+//     margin-top: 10px;
+//     border: none;
+//     border-radius: $button-border-radius;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease;
+//     font-size: 14px;
+//     width: 110px;
+//     cursor: pointer;
+//     padding: 0 25px;
+//     height: 50px;
+//     font-size: 14px;
+//     line-height: 1.5;
+//     text-align: center;
+//     border: none;
+//     outline: none;
+//   .btn {
+//     padding: 10px 20px;
+//     color: $button-font-color;
+//     margin-left: 25px;
+//     margin-bottom: 34px;
+//     margin-top: 10px;
+//     border: none;
+//     border-radius: $button-border-radius;
+//     cursor: pointer;
+//     transition: background-color 0.3s ease;
+//     font-size: 14px;
+//     width: 110px;
+//     cursor: pointer;
+//     padding: 0 25px;
+//     height: 50px;
+//     font-size: 14px;
+//     line-height: 1.5;
+//     text-align: center;
+//     border: none;
+//     outline: none;
+
+//     &.btn-primary {
+//       background-color: $primary-color;
+//     &.btn-primary {
+//       background-color: $primary-color;
+
+//       &:hover {
+//         background-color: $button-hover-color;
+//       }
+//     }
+//   }
+//       &:hover {
+//         background-color: $button-hover-color;
+//       }
+//     }
+//   }
+
+//   .popup {
+//     background-color: $popup-background;
+//     padding: 20px;
+//     width: 100%;
+//     height: 10vh;
+//     position: relative;
+//     color: $popup-text-color;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     text-align: center;
+//   .popup {
+//     background-color: $popup-background;
+//     padding: 20px;
+//     width: 100%;
+//     height: 10vh;
+//     position: relative;
+//     color: $popup-text-color;
+//     display: flex;
+//     justify-content: space-between;
+//     align-items: center;
+//     text-align: center;
+
+//     .popup-title {
+//       h3 {
+//         font-size: 18px;
+//         margin: 0;
+//       }
+//     }
+//     .popup-title {
+//       h3 {
+//         font-size: 18px;
+//         margin: 0;
+//       }
+//     }
+
+//     .close {
+//       cursor: pointer;
+//       color: $popup-text-color;
+//     }
+//     .close {
+//       cursor: pointer;
+//       color: $popup-text-color;
+//     }
+
+//     i {
+//       font-size: 26px;
+//       font-weight: 800;
+//     }
+//   }
+// }
+//     i {
+//       font-size: 26px;
+//       font-weight: 800;
+//     }
+//   }
+// }
+
+// .btn_add {
+//   @include flex-center;
+//   padding: 8px 16px;
+//   font-size: 14px;
+//   font-weight: 600;
+//   line-height: 1.5;
+//   text-align: center;
+//   border: none;
+//   border-radius: $button-border-radius;
+//   color: $button-font-color;
+//   background-color: $primary-color;
+// }
+// .btn_add {
+//   @include flex-center;
+//   padding: 8px 16px;
+//   font-size: 14px;
+//   font-weight: 600;
+//   line-height: 1.5;
+//   text-align: center;
+//   border: none;
+//   border-radius: $button-border-radius;
+//   color: $button-font-color;
+//   background-color: $primary-color;
+// }
+
+// .header {
+//   @include flex-center;
+//   justify-content: space-between;
+//   border: 0.5px solid;
+//   padding: 10px;
+// .header {
+//   @include flex-center;
+//   justify-content: space-between;
+//   border: 0.5px solid;
+//   padding: 10px;
+
+//   p {
+//     padding: 0;
+//     margin: 0;
+//   }
+// }.select-wrapper {
+//     position: relative;
+//   p {
+//     padding: 0;
+//     margin: 0;
+//   }
+// }.select-wrapper {
+//     position: relative;
+  
+//     select {
+//       width: 100%;
+//       padding: 15px;
+//       font-size: 14px;
+//       border: none;
+//       background: #f7fafc;
+//       border-radius: 5px;
+//       box-shadow: 0px 2px 4px #7777772e;
+//       appearance: none; /* Remove default arrow */
+//       cursor: pointer;
+//     select {
+//       width: 100%;
+//       padding: 15px;
+//       font-size: 14px;
+//       border: none;
+//       background: #f7fafc;
+//       border-radius: 5px;
+//       box-shadow: 0px 2px 4px #7777772e;
+//       appearance: none; /* Remove default arrow */
+//       cursor: pointer;
+  
+//       &:focus {
+//         outline: none;
+//         background: #fff;
+//       }
+//     }
+//       &:focus {
+//         outline: none;
+//         background: #fff;
+//       }
+//     }
+  
+//     /* Custom dropdown arrow */
+//     .select-arrow {
+//       position: absolute;
+//       top: 50%;
+//       right: 15px;
+//       transform: translateY(-50%);
+//       pointer-events: none;
+//       color: $Steel_Blue;
+//     }
+//   }
+//     /* Custom dropdown arrow */
+//     .select-arrow {
+//       position: absolute;
+//       top: 50%;
+//       right: 15px;
+//       transform: translateY(-50%);
+//       pointer-events: none;
+//       color: $Steel_Blue;
+//     }
+//   }

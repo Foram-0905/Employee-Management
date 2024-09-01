@@ -1,0 +1,770 @@
+[
+  {
+    "model": "Configuration",
+    "subModel": "SLG Group",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.slggroup.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.slggroup.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.slggroup.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.slggroup.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "Designation",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.designation.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.designation.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.designation.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.designation.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "Role",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.role.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.role.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.role.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.role.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "Manage Permission",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.permission.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.permission.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "permissions.permission.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.permission.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "Manage Leave",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.leave.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.manageleave.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.manageleave.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.manageleave.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "Leave Category",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.leavecategory.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.leavecategory.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.leavecategory.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.leavecategory.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "Leave Type",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.leavetype.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.leavetype.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.leavetype.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.leavetype.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "Manage Public Holidays",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.managepublicholidays.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.managepublicholidays.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.managepublicholidays.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.managepublicholidays.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "Manage Asset",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.manageasset.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.manageasset.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.manageasset.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.manageasset.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "Education Level",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.educationlevel.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.educationlevel.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.educationlevel.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.educationlevel.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "Language Level",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.languagelevel.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.languagelevel.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.languagelevel.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.languagelevel.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "Manage Currency",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.managecurrency.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.managecurrency.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.managecurrency.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.managecurrency.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "Manage Country",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.managecountry.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.managecountry.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.managecountry.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.managecountry.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "State/Region",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.stateregion.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.stateregion.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.stateregion.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.stateregion.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "Manage City",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.managecity.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.managecity.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.managecity.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.managecity.View"
+      }
+    ]
+  },
+  {
+    "model": "Configuration",
+    "subModel": "User Active Log",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "configuration.useractivelog.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "configuration.useractivelog.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "configuration.useractivelog.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "configuration.useractivelog.View"
+      }
+    ]
+  },
+  {
+    "model": "Employee List",
+    "subModel": "Employee List",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "employeelist.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "employeelist.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "employeelist.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "employeelist.View"
+      }
+    ]
+  },
+  {
+    "model": "Organisational chart",
+    "subModel": "Organisational chart",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "organisationalchart.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "organisationalchart.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "organisationalchart.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "organisationalchart.View"
+      }
+    ]
+  },
+  {
+    "model": "Leave",
+    "subModel": "Leave Details",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "Leave.leavedetails.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "Leave.leavedetails.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "Leave.leavedetails.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "Leave.leavedetails.View"
+      }
+    ]
+  },
+  {
+    "model": "Leave",
+    "subModel": "EmployeeLeave",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "Leave.EmployeeLeave.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "Leave.EmployeeLeave.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "Leave.EmployeeLeave.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "Leave.EmployeeLeave.View"
+      }
+    ]
+  },
+  {
+    "model": "Leave",
+    "subModel": "OfficeManagement",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "Leave.OfficeManagement.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "Leave.OfficeManagement.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "Leave.OfficeManagement.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "Leave.OfficeManagement.View"
+      }
+    ]
+  },
+  {
+    "model": "Leave",
+    "subModel": "Approve Leave by Teamlead",
+    "action": [
+      {
+        "Label": "Approve",
+        "permission": "Leave.approveleavebyTeamlead.Approve"
+      }
+    ]
+  },
+  {
+    "model": "Leave",
+    "subModel": "Approve Leave by Office Management",
+    "action": [
+      {
+        "Label": "Approve",
+        "permission": "Leave.approveleavebyOfficemanagement.Approve"
+      }
+    ]
+  },
+  {
+    "model": "Users",
+    "subModel": "User Management",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "Leave.userManagement.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "Leave.userManagement.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "Leave.userManagement.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "Leave.userManagement.View"
+      }
+    ]
+  },
+  {
+    "model": "Employee Profile",
+    "subModel": "Personal",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "employeeprofile.personal.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "employeeprofile.personal.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "employeeprofile.personal.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "employeeprofile.personal.View"
+      }
+    ]
+  },
+  {
+    "model": "Employee Profile",
+    "subModel": "Contact",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "employeeprofile.contact.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "employeeprofile.contact.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "employeeprofile.contact.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "employeeprofile.contact.View"
+      }
+    ]
+  },
+  {
+    "model": "Employee Profile",
+    "subModel": "Identity Cards",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "employeeprofile.identitycards.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "employeeprofile.identitycards.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "employeeprofile.identitycards.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "employeeprofile.identitycards.View"
+      }
+    ]
+  },
+  {
+    "model": "Employee Profile",
+    "subModel": "Assets",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "employeeprofile.assets.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "employeeprofile.assets.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "employeeprofile.assets.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "employeeprofile.assets.View"
+      }
+    ]
+  },
+  {
+    "model": "Employee Profile",
+    "subModel": "Education",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "employeeprofile.education.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "employeeprofile.education.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "employeeprofile.education.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "employeeprofile.education.View"
+      }
+    ]
+  },
+  {
+    "model": "Employee Profile",
+    "subModel": "Job History",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "employeeprofile.jobhistory.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "employeeprofile.jobhistory.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "employeeprofile.jobhistory.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "employeeprofile.jobhistory.View"
+      }
+    ]
+  },
+  {
+    "model": "Employee Profile",
+    "subModel": "Document",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "employeeprofile.document.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "employeeprofile.document.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "employeeprofile.document.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "employeeprofile.document.View"
+      }
+    ]
+  },
+  {
+    "model": "Employee Profile",
+    "subModel": "Documentlist",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "employeeprofile.documentlist.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "employeeprofile.documentlist.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "employeeprofile.documentlist.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "employeeprofile.documentlist.View"
+      }
+    ]
+  },
+  {
+    "model": "Employee Profile",
+    "subModel": "Termination of Employment",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "employeeprofile.TerminationofEmployment.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "employeeprofile.TerminationofEmployment.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "employeeprofile.TerminationofEmployment.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "employeeprofile.TerminationofEmployment.View"
+      }
+    ]
+  },
+  {
+    "model": "Employee Profile",
+    "subModel": "Salary",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "employeeprofile.Salary.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "employeeprofile.Salary.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "employeeprofile.Salary.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "employeeprofile.Salary.View"
+      }
+    ]
+  },
+  {
+    "model": "Employee Profile",
+    "subModel": "Bonus",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "employeeprofile.Bonus.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "employeeprofile.Bonus.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "employeeprofile.Bonus.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "employeeprofile.Bonus.View"
+      }
+    ]
+  },
+  {
+    "model": "Employee Profile",
+    "subModel": "Consultant Rate",
+    "action": [
+      {
+        "Label": "Add",
+        "permission": "employeeprofile.consultantRate.Add"
+      },
+      {
+        "Label": "Edit",
+        "permission": "employeeprofile.consultantRate.Edit"
+      },
+      {
+        "Label": "Delete",
+        "permission": "employeeprofile.consultantRate.Delete"
+      },
+      {
+        "Label": "View",
+        "permission": "employeeprofile.consultantRate.View"
+      }
+    ]
+  }
+]
